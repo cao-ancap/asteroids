@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/black_meteor.png-a2c333acc05a835fc84323a84e162be5.stex"
+path="res://.import/black_meteor.png-ac1776faa187fdb88c2d7c62b678487c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://black_meteor.png"
-dest_files=[ "res://.import/black_meteor.png-a2c333acc05a835fc84323a84e162be5.stex" ]
+source_file="res://Asteroid/black_meteor.png"
+dest_files=[ "res://.import/black_meteor.png-ac1776faa187fdb88c2d7c62b678487c.stex" ]
 
 [params]
 

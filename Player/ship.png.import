@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gray_meteor.png-6c820399103fa2ab4b9562443bcccc37.stex"
+path="res://.import/ship.png-8e6c2999e495cc633c39e886e2fb63ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gray_meteor.png"
-dest_files=[ "res://.import/gray_meteor.png-6c820399103fa2ab4b9562443bcccc37.stex" ]
+source_file="res://Player/ship.png"
+dest_files=[ "res://.import/ship.png-8e6c2999e495cc633c39e886e2fb63ee.stex" ]
 
 [params]
 

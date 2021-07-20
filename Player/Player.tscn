@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://ship.png" type="Texture" id=1]
-[ext_resource path="res://Player.gd" type="Script" id=2]
+[ext_resource path="res://Player/ship.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
 
 [node name="Player" type="RigidBody2D"]
 mode = 2
