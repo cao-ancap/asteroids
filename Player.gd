@@ -1,17 +1,28 @@
 extends RigidBody2D
 
-signal hit
+signal dead
 
 export var max_speed = 450
 export var world_speed = 0
 var screen_size
 
-var speed = Vector2.ZERO;
+var speed = Vector2.ZERO
+var start_pos = Vector2.ZERO
+
+var reset = false
 
 func _ready():
 	screen_size = get_viewport_rect().size
-	#hide()
+	hide()
 
+func _integrate_forces(state):
+	if reset:
+		state.transform = Transform2D(0, start_pos)
+		state.linear_velocity = Vector2.ZERO
+		reset = false
+		
+func force_reset():
+	reset = true
 
 func _process(delta):
 	var disable_world_speed = false
@@ -59,12 +70,13 @@ func _process(delta):
 	linear_velocity = speed
 
 func start(pos):
-	position = pos
+	start_pos = pos
+	force_reset()
 	show()
 	$CollisionPolygon2D.disabled = false
 
-
 func _on_Player_body_entered(_body):
 	hide()
-	emit_signal("hit")
+	emit_signal("dead")
+	force_reset()
 	$CollisionPolygon2D.set_deferred("disabled", true)

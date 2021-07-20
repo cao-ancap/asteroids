@@ -9,7 +9,6 @@ func _ready():
 	var type = randi() % textures.size()
 	$Sprite.texture = textures[type]
 	angular_velocity = (randf() - 0.5) * 16
-	print(angular_velocity)
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

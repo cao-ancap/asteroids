@@ -6,6 +6,8 @@
 [node name="Player" type="RigidBody2D"]
 mode = 2
 gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -14,3 +16,4 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 30, 0, 15, 15, -30, 30, -30, -30, 15, -15 )
+disabled = true
