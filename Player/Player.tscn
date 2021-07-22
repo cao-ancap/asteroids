@@ -1,19 +1,55 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Player/ship.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Ships/ship.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/fire.svg" type="Texture" id=3]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.5
+rough = true
+bounce = 0.3
+absorbent = true
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.41554 ), 0.0, 3.22195, 0, 0, Vector2( 1, 0 ), -0.830629, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+flag_disable_z = true
+spread = 15.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = -8.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_curve = SubResource( 4 )
 
 [node name="Player" type="RigidBody2D"]
 mode = 2
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
-rotation = 1.5708
-texture = ExtResource( 1 )
-
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 30, 0, 15, 15, -30, 30, -30, -30, 15, -15 )
 disabled = true
+
+[node name="Particles2DR" type="Particles2D" parent="."]
+position = Vector2( -28, 8 )
+amount = 3
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="Particles2DL" type="Particles2D" parent="."]
+position = Vector2( -28, -8 )
+amount = 3
+process_material = SubResource( 2 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, 0 )
+rotation = 1.5708
+texture = ExtResource( 1 )

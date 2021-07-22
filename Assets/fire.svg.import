@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/gray_meteor.png-be0035831cff545acbe1fd1dee3b9bd6.stex"
+path="res://.import/fire.svg-b821e731b83bd88aed9d1cef6a297efe.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asteroid/gray_meteor.png"
-dest_files=[ "res://.import/gray_meteor.png-be0035831cff545acbe1fd1dee3b9bd6.stex" ]
+source_file="res://Assets/fire.svg"
+dest_files=[ "res://.import/fire.svg-b821e731b83bd88aed9d1cef6a297efe.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

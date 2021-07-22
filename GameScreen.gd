@@ -2,14 +2,18 @@ extends Node
 
 export (PackedScene) var asteroid_scene
 
+const world_speed = -50
+
 var score = 0
 
 func _ready():
 	randomize()
+	$Starfield.process_material.set("initial_velocity", world_speed)
 
 func _on_Menu_start_game():
 	get_tree().call_group("asteroids", "queue_free")
 	score = 0
+	$Player.world_speed = world_speed
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$Menu.update_score(score)

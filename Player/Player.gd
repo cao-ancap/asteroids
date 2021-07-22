@@ -57,13 +57,13 @@ func _process(delta):
 			speed.x -= max_speed_delta
 		elif speed.x < world_speed:
 			speed.x += max_speed_delta
-		speed.x = stepify(speed.x, 0.01)
+		speed.x = stepify(speed.x, 0.1)
 	if direction.y == 0:
 		if speed.y > 0:
 			speed.y -= max_speed_delta
 		elif speed.y < 0:
 			speed.y += max_speed_delta
-		speed.y = stepify(speed.y, 0.01)
+		speed.y = stepify(speed.y, 0.1)
 	if not disable_world_speed and speed.x > world_speed:
 		speed.x += world_speed * delta
 	
