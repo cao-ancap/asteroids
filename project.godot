@@ -12,7 +12,7 @@ config_version=4
 
 config/name="Asteroids"
 run/main_scene="res://GameScreen.tscn"
-config/icon="res://Assets/Ships/ship.png"
+config/icon="res://Assets/Images/Ships/ship.png"
 
 [display]
 
@@ -71,6 +71,11 @@ move_up={
  ]
 }
 
+[locale]
+
+translations=PoolStringArray( "res://Assets/Language/en_US.po", "res://Assets/Language/pt_BR.po" )
+locale_filter=[ 0, [ "en_US", "pt_BR" ] ]
+
 [physics]
 
 common/enable_pause_aware_picking=true
@@ -80,3 +85,4 @@ common/enable_pause_aware_picking=true
 
 quality/driver/fallback_to_gles2=true
 threads/thread_model=2
+quality/dynamic_fonts/use_oversampling=false

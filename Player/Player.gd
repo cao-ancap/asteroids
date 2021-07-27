@@ -79,6 +79,7 @@ func start(pos):
 	$CollisionPolygon2D.disabled = false
 
 func _on_Player_body_entered(_body):
+	$HitSound.play()
 	hide()
 	emit_signal("dead")
 	force_reset()

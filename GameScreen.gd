@@ -18,11 +18,13 @@ func _on_Menu_start_game():
 	$StartTimer.start()
 	$Menu.update_score(score)
 	$Menu.show_message("Get Ready")
+	$BackgroundMusic.play()
 
 func game_over():
 	$ScoreTimer.stop()
 	$AsteroidTimer.stop()
 	$Menu.show_game_over()
+	$BackgroundMusic.stop()
 
 func _on_ScoreTimer_timeout():
 	score += 1

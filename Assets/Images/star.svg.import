@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/black_asteroid.png-61abd4a7774da0fa7d1e41bf6fef7b52.stex"
+path="res://.import/star.svg-36637a65b956b5e755203caee4fc23e1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Asteroid/black_asteroid.png"
-dest_files=[ "res://.import/black_asteroid.png-61abd4a7774da0fa7d1e41bf6fef7b52.stex" ]
+source_file="res://Assets/Images/star.svg"
+dest_files=[ "res://.import/star.svg-36637a65b956b5e755203caee4fc23e1.stex" ]
 
 [params]
 

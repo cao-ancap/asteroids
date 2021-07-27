@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Asteroid/gray_asteroid.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Asteroid/black_asteroid.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Asteroid/brown_asteroid.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Images/Asteroid/gray_asteroid.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Images/Asteroid/black_asteroid.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/Asteroid/brown_asteroid.png" type="Texture" id=3]
 [ext_resource path="res://Asteroid/Asteroid.gd" type="Script" id=4]
 
 [sub_resource type="PhysicsMaterial" id=1]
