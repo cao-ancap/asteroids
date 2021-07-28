@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Installing the GDScript Toolkit
+# pip3 install gdtoolkit
+
+gdformat $(find . -name '*.gd')

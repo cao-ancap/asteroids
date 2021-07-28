@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Menu/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Fonts/origin/fairfaxstation/FairfaxStationNF.otf" type="DynamicFontData" id=2]
@@ -10,6 +10,12 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0.501961, 0, 0.501961 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.501961, 0, 0, 0.501961 )
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -75,9 +81,23 @@ margin_left = 896.0
 margin_top = 416.0
 margin_right = 1024.0
 margin_bottom = 480.0
-text = "v0.0.5a"
+text = "v0.0.6a"
 align = 2
 valign = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HPBar" type="ProgressBar" parent="."]
+visible = false
+margin_right = 192.0
+margin_bottom = 16.0
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+max_value = 10.0
+step = 1.0
+value = 10.0
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
