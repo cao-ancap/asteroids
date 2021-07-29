@@ -5,6 +5,7 @@ export var density := 2
 
 var layers := []
 
+
 func start(world_speed):
 	stop()
 	for _i in range(density):
@@ -13,9 +14,10 @@ func start(world_speed):
 		layers.append(star_layer)
 		$ParallaxBackground.add_child(star_layer)
 
+
 func stop():
 	for layer in layers:
 		$ParallaxBackground.remove_child(layer)
 		layer.queue_free()
-		
+
 	layers = []

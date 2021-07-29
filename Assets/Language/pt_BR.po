@@ -37,3 +37,15 @@ msgstr "Fechar"
 msgid "Dynamic Background"
 msgstr "Fundo Dinâmico"
 
+msgid "Fullscreen"
+msgstr "Tela Cheia"
+
+msgid "Exit"
+msgstr "Sair"
+
+msgid "Use Touch Joystick"
+msgstr "Usar Joystick por Toque"
+
+msgid "Joystick Sensitivity"
+msgstr "Sensibilidade do Joystick"
+

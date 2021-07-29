@@ -1,15 +1,14 @@
 extends Node
 
 export var asteroid_scene: PackedScene
-
 export var world_speed := -50.0
 
 var score := 0
 
 
 func _ready():
-	randomize()
 	$StarfieldParallax.start(world_speed)
+	$Player.joystick = $HUD/Joystick
 
 
 func _on_Menu_game_started():
@@ -18,30 +17,26 @@ func _on_Menu_game_started():
 	$Player.world_speed = world_speed
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
-	$Menu.update_score(score)
-	$Menu.show_message("Get Ready")
+	$HUD.update_score(score)
+	$HUD.show_message("Get Ready")
 	$BackgroundMusic.play()
 
 
 func game_over():
 	$ScoreTimer.stop()
 	$AsteroidTimer.stop()
-	$Menu.show_game_over()
+	$HUD.show_game_over()
 	$BackgroundMusic.stop()
 
 
 func _on_ScoreTimer_timeout():
 	score += 1
-	$Menu.update_score(score)
+	$HUD.update_score(score)
 
 
 func _on_StartTimer_timeout():
 	$AsteroidTimer.start()
 	$ScoreTimer.start()
-
-
-const degree_90 := PI / 2
-const degree_45 := PI / 4
 
 
 func _on_AsteroidTimer_timeout():
@@ -56,15 +51,14 @@ func _on_AsteroidTimer_timeout():
 
 	var direction: float = (
 		asteroid_spawn_location.rotation
-		+ degree_90
-		+ rand_range(-degree_45, degree_45)
+		+ rand_range(Global.RAD_045_GRAUS, Global.RAD_135_GRAUS)
 	)
 	var velocity := Vector2(rand_range(asteroid.min_speed, asteroid.max_speed), 0)
 	asteroid.linear_velocity = velocity.rotated(direction)
 
 
 func _on_Player_hp_updated(hp):
-	$Menu.set_hp_value(hp)
+	$HUD.set_hp_value(hp)
 
 
 func _on_Player_died():
@@ -72,7 +66,16 @@ func _on_Player_died():
 
 
 func _on_Menu_configuration_opened():
-	$Menu/AdvancedMenu.show()
+	$HUD/Config.show()
+	$HUD/Config/LanguageButton.grab_focus()
+	$HUD/StartButton.hide()
+	$HUD/ConfigurationButton.hide()
+
+
+func _on_Config_hide():
+	$HUD/StartButton.show()
+	$HUD/ConfigurationButton.show()
+	$HUD/ConfigurationButton.grab_focus()
 
 
 func _on_AdvancedMenu_dynamic_background_enabled(enabled):

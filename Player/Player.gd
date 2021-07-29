@@ -3,6 +3,8 @@ extends RigidBody2D
 signal died
 signal hp_updated(hp)
 
+var joystick: Node2D
+
 export var max_speed := 450.0
 export var world_speed := 0.0
 export var base_hp := 10
@@ -50,6 +52,8 @@ func _process(delta: float):
 		speed.y = -3 * max_speed_delta
 
 	var direction := Vector2.ZERO
+	if joystick:
+		direction = joystick.get_direction()
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
 	if Input.is_action_pressed("move_left"):
@@ -80,9 +84,9 @@ func _process(delta: float):
 
 	if direction.y == 0:
 		if speed.y > 0:
-			speed.y = speed.y - max_speed_delta if max_speed_delta < speed.y else 0
+			speed.y = speed.y - max_speed_delta if max_speed_delta < speed.y else 0.0
 		elif speed.y < 0:
-			speed.y = speed.y + max_speed_delta if -max_speed_delta > speed.y else 0
+			speed.y = speed.y + max_speed_delta if -max_speed_delta > speed.y else 0.0
 
 	if not disable_world_speed and speed.x > world_speed:
 		speed.x += world_speed * delta
