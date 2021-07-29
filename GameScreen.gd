@@ -9,10 +9,10 @@ var score := 0
 
 func _ready():
 	randomize()
-	$Starfield.process_material.set("initial_velocity", world_speed)
+	$StarfieldParallax.start(world_speed)
 
 
-func _on_Menu_start_game():
+func _on_Menu_game_started():
 	get_tree().call_group("asteroids", "queue_free")
 	score = 0
 	$Player.world_speed = world_speed
@@ -63,5 +63,22 @@ func _on_AsteroidTimer_timeout():
 	asteroid.linear_velocity = velocity.rotated(direction)
 
 
-func _on_Player_new_hp(hp):
+func _on_Player_hp_updated(hp):
 	$Menu.set_hp_value(hp)
+
+
+func _on_Player_died():
+	game_over()
+
+
+func _on_Menu_configuration_opened():
+	$Menu/AdvancedMenu.show()
+
+
+func _on_AdvancedMenu_dynamic_background_enabled(enabled):
+	if enabled:
+		$Starfield.start(world_speed)
+		$StarfieldParallax.stop()
+	else:
+		$Starfield.stop()
+		$StarfieldParallax.start(world_speed)

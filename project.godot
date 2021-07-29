@@ -73,7 +73,7 @@ move_up={
 
 [locale]
 
-translations=PoolStringArray( "res://Assets/Language/en_US.po", "res://Assets/Language/pt_BR.po" )
+translations=PoolStringArray( "res://Assets/Language/pt_BR.po" )
 locale_filter=[ 0, [ "en_US", "pt_BR" ] ]
 
 [physics]
@@ -85,4 +85,5 @@ common/enable_pause_aware_picking=true
 
 quality/driver/fallback_to_gles2=true
 threads/thread_model=2
+environment/default_clear_color=Color( 0.0941176, 0.0627451, 0.25098, 1 )
 quality/dynamic_fonts/use_oversampling=false

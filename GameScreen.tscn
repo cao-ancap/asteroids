@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Asteroid/Asteroid.tscn" type="PackedScene" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://Menu/Menu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://StarField/StarField.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=6]
+[ext_resource path="res://StarField/StarfieldBackground.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Menu/AdvancedMenu.tscn" type="PackedScene" id=8]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -16,19 +18,17 @@ _data = {
 script = ExtResource( 3 )
 asteroid_scene = ExtResource( 2 )
 
-[node name="BackColor" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.0627451, 0.0313726, 0.25098, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="StarfieldParallax" parent="." instance=ExtResource( 7 )]
 
 [node name="Starfield" parent="." instance=ExtResource( 5 )]
+emitting = false
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
 [node name="Menu" parent="." instance=ExtResource( 4 )]
+
+[node name="AdvancedMenu" parent="Menu" instance=ExtResource( 8 )]
+visible = false
 
 [node name="AsteroidPath" type="Path2D" parent="."]
 position = Vector2( -166.769, 25.8824 )
@@ -53,9 +53,11 @@ position = Vector2( 128, 240 )
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[connection signal="dead" from="Player" to="." method="game_over"]
-[connection signal="new_hp" from="Player" to="." method="_on_Player_new_hp"]
-[connection signal="start_game" from="Menu" to="." method="_on_Menu_start_game"]
+[connection signal="died" from="Player" to="." method="_on_Player_died"]
+[connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]
+[connection signal="configuration_opened" from="Menu" to="." method="_on_Menu_configuration_opened"]
+[connection signal="game_started" from="Menu" to="." method="_on_Menu_game_started"]
+[connection signal="dynamic_background_enabled" from="Menu/AdvancedMenu" to="." method="_on_AdvancedMenu_dynamic_background_enabled"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]

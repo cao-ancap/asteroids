@@ -17,10 +17,23 @@ msgid "Start"
 msgstr "Iniciar"
 
 msgid "Get Ready"
-msgstr "Se prepare"
+msgstr "Se Prepare"
 
 msgid "Dodge the Asteroids"
-msgstr "Desvie dos asteroides"
+msgstr "Desvie dos Asteroides"
 
 msgid "Game Over"
-msgstr "Fim de jogo"
+msgstr "Fim de Jogo"
+
+msgid "Configurations"
+msgstr "Configurações"
+
+msgid "Language"
+msgstr "Linguagem"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Dynamic Background"
+msgstr "Fundo Dinâmico"
+

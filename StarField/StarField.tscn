@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Assets/Images/star.png" type="Texture" id=1]
+[ext_resource path="res://StarField/StarField.gd" type="Script" id=2]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.2, 0.1 ), 0.0, 0.0, 0, 0, Vector2( 0.4, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.6, 0.1 ), 0.0, 0.0, 0, 0, Vector2( 0.8, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -23,7 +24,7 @@ angle_random = 1.0
 scale_random = 0.5
 scale_curve = SubResource( 2 )
 
-[node name="Particles2D" type="Particles2D"]
+[node name="Starfield" type="Particles2D"]
 position = Vector2( 1080, 240 )
 amount = 120
 lifetime = 25.0
@@ -31,3 +32,4 @@ preprocess = 25.0
 visibility_rect = Rect2( -56, -240, 112, 480 )
 process_material = SubResource( 3 )
 texture = ExtResource( 1 )
+script = ExtResource( 2 )

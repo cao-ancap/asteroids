@@ -1,21 +1,13 @@
 extends CanvasLayer
 
-signal start_game
+signal game_started
+signal configuration_opened
 
 const start_message := "Dodge the Asteroids"
-
-const laguages := [
-	{"code": "pt_BR", "name": "Português (Brasil)"},
-	{"code": "en_US", "name": "English (United States)"}
-]
 
 
 func _ready():
 	$MessageLabel.text = start_message
-	for laguage in laguages:
-		$LanguageButton.add_item(laguage["name"])
-
-	_on_LanguageButton_item_selected(0)
 
 
 func show_message(text: String):
@@ -31,8 +23,8 @@ func show_game_over():
 	$MessageLabel.show()
 	yield(get_tree().create_timer(1), "timeout")
 	$StartButton.show()
-	$LanguageButton.show()
 	$VersionLabel.show()
+	$ConfigurationButton.show()
 	$HPBar.hide()
 
 
@@ -42,20 +34,18 @@ func update_score(score: int):
 
 func _on_StartButton_pressed():
 	$StartButton.hide()
-	$LanguageButton.hide()
 	$VersionLabel.hide()
+	$ConfigurationButton.hide()
 	$HPBar.show()
-	emit_signal("start_game")
+	emit_signal("game_started")
 
 
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
 
-
-func _on_LanguageButton_item_selected(index: int):
-	if laguages.size() > index:
-		TranslationServer.set_locale(laguages[index]["code"])
-
-
 func set_hp_value(hp: int):
 	$HPBar.value = hp
+
+
+func _on_ConfigurationButton_pressed():
+	emit_signal("configuration_opened")

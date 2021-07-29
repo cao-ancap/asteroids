@@ -1,7 +1,7 @@
 extends RigidBody2D
 
-signal dead
-signal new_hp(hp)
+signal died
+signal hp_updated(hp)
 
 export var max_speed := 450.0
 export var world_speed := 0.0
@@ -96,7 +96,7 @@ func _process(delta: float):
 func start(pos: Vector2):
 	start_pos = pos
 	hp = base_hp
-	emit_signal("new_hp", hp)
+	emit_signal("hp_updated", hp)
 	force_reset()
 	show_player()
 
@@ -104,7 +104,7 @@ func start(pos: Vector2):
 func _on_Player_body_entered(_body: Node):
 	$HitSound.random_pitch_play()
 	hp -= 1
-	emit_signal("new_hp", hp)
+	emit_signal("hp_updated", hp)
 	if hp <= 0:
 		die()
 
@@ -112,7 +112,7 @@ func _on_Player_body_entered(_body: Node):
 func die():
 	$Explosion.position = position - start_pos
 	$Explosion.play()
-	emit_signal("dead")
+	emit_signal("died")
 	hide_player()
 	force_reset()
 
