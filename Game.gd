@@ -7,7 +7,7 @@ var score := 0
 
 
 func _ready():
-	$StarfieldParallax.start(world_speed)
+	config_dynamic_background()
 	$Player.joystick = $HUD/Joystick
 
 
@@ -18,15 +18,17 @@ func _on_Menu_game_started():
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
+	$HUD.show()
+	$Menu.show_message("Get Ready")
 	$BackgroundMusic.play()
 
 
 func game_over():
 	$ScoreTimer.stop()
 	$AsteroidTimer.stop()
-	$HUD.show_game_over()
+	$Menu.show_game_over()
 	$BackgroundMusic.stop()
+	$HUD.hide()
 
 
 func _on_ScoreTimer_timeout():
@@ -66,20 +68,30 @@ func _on_Player_died():
 
 
 func _on_Menu_configuration_opened():
-	$HUD/Config.show()
-	$HUD/Config/LanguageButton.grab_focus()
-	$HUD/StartButton.hide()
-	$HUD/ConfigurationButton.hide()
+	$Menu/Config.show()
+	$Menu/Config/LanguageButton.grab_focus()
+	$Menu/StartButton.hide()
+	$Menu/ConfigurationButton.hide()
 
 
 func _on_Config_hide():
-	$HUD/StartButton.show()
-	$HUD/ConfigurationButton.show()
-	$HUD/ConfigurationButton.grab_focus()
+	$Menu/StartButton.show()
+	$Menu/ConfigurationButton.show()
+	$Menu/ConfigurationButton.grab_focus()
+
+func _on_Config_joystick_changed():
+	$HUD.update_joystick()
+		
+
+func _on_Config_sensitivity_changed():
+	$HUD.update_joystick_sensitivity()
 
 
-func _on_AdvancedMenu_dynamic_background_enabled(enabled):
-	if enabled:
+func _on_Config_dynamic_background_changed():
+	config_dynamic_background()
+	
+func config_dynamic_background():
+	if Global.dynamic_background_enabled:
 		$Starfield.start(world_speed)
 		$StarfieldParallax.stop()
 	else:
