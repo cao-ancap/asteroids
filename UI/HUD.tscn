@@ -16,7 +16,7 @@ __meta__ = {
 }
 
 [node name="Joystick" parent="." instance=ExtResource( 3 )]
-position = Vector2( 72, 408 )
+position = Vector2( 104, 376 )
 
 [node name="ScoreLabel" type="Label" parent="."]
 margin_left = 760.0

@@ -79,9 +79,10 @@ func _on_Config_hide():
 	$Menu/ConfigurationButton.show()
 	$Menu/ConfigurationButton.grab_focus()
 
+
 func _on_Config_joystick_changed():
 	$HUD.update_joystick()
-		
+
 
 func _on_Config_sensitivity_changed():
 	$HUD.update_joystick_sensitivity()
@@ -89,7 +90,8 @@ func _on_Config_sensitivity_changed():
 
 func _on_Config_dynamic_background_changed():
 	config_dynamic_background()
-	
+
+
 func config_dynamic_background():
 	if Global.dynamic_background_enabled:
 		$Starfield.start(world_speed)

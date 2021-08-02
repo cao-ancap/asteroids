@@ -10,7 +10,8 @@ func _ready():
 	$MessageLabel.text = start_message
 	$StartButton.grab_focus()
 	show_exit_button()
-		
+
+
 func show_exit_button():
 	if Global.is_web:
 		$ExitButton.hide()
@@ -46,7 +47,6 @@ func _on_StartButton_pressed():
 
 func _on_MessageTimer_timeout():
 	$MessageLabel.hide()
-
 
 
 func _on_ConfigurationButton_pressed():
