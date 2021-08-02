@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://UI/HUD.gd" type="Script" id=1]
-[ext_resource path="res://UI/Joystick.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/HUD.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/Joystick/Joystick.tscn" type="PackedScene" id=3]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.501961, 0, 0.501961 )

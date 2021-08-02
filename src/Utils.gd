@@ -1,5 +1,7 @@
 extends Node
 
+const version := '0.0.9a'
+
 const RAD_000_GRAUS := deg2rad(0)
 const RAD_045_GRAUS := deg2rad(45)
 const RAD_090_GRAUS := deg2rad(90)
@@ -9,28 +11,10 @@ const RAD_225_GRAUS := deg2rad(225)
 const RAD_270_GRAUS := deg2rad(270)
 const RAD_315_GRAUS := deg2rad(315)
 
-const laguages := [
-	{"code": "pt_BR", "name": "Português (Brasil)"},
-	{"code": "en_US", "name": "English (United States)"}
-]
-
 onready var is_web := OS.get_name() == "HTML5"
-onready var has_joystick := not OS.get_name() in ["OSX", "Windows", "UWP", "X11"]
-
-var joystick_sensitivity := 60.0
-var dynamic_background_enabled := false
-var selected_laguage := 0
-
 
 func _ready():
 	randomize()
-
-
-func select_language(index: int):
-	if laguages.size() > index:
-		selected_laguage = index
-		TranslationServer.set_locale(laguages[index]["code"])
-
 
 func rand_signal() -> int:
 	return (randi() & 2) - 1

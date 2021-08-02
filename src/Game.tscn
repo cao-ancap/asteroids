@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://Asteroid/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Asteroid/Asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=2]
-[ext_resource path="res://StarField/StarfieldBackground.tscn" type="PackedScene" id=3]
-[ext_resource path="res://UI/HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://UI/ConfigMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Game.gd" type="Script" id=7]
-[ext_resource path="res://StarField/StarField.tscn" type="PackedScene" id=8]
-[ext_resource path="res://UI/Menu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/StarField/StarfieldBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UI/Menu/ConfigMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/Game.gd" type="Script" id=7]
+[ext_resource path="res://src/StarField/StarField.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/UI/Menu/Menu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/UI/Menu/CreditsMenu.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -53,6 +54,7 @@ position = Vector2( 128, 240 )
 stream = ExtResource( 2 )
 
 [node name="Menu" parent="." instance=ExtResource( 9 )]
+pause_mode = 2
 
 [node name="Config" parent="Menu" instance=ExtResource( 6 )]
 visible = false
@@ -61,14 +63,19 @@ margin_top = 0.0
 margin_right = 512.0
 margin_bottom = 384.0
 
+[node name="Credits" parent="Menu" instance=ExtResource( 10 )]
+visible = false
+
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]
 [connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
 [connection signal="configuration_opened" from="Menu" to="." method="_on_Menu_configuration_opened"]
+[connection signal="credits_opened" from="Menu" to="." method="_on_Menu_credits_opened"]
 [connection signal="game_started" from="Menu" to="." method="_on_Menu_game_started"]
 [connection signal="dynamic_background_changed" from="Menu/Config" to="." method="_on_Config_dynamic_background_changed"]
 [connection signal="hide" from="Menu/Config" to="." method="_on_Config_hide"]
 [connection signal="joystick_changed" from="Menu/Config" to="." method="_on_Config_joystick_changed"]
 [connection signal="sensitivity_changed" from="Menu/Config" to="." method="_on_Config_sensitivity_changed"]
+[connection signal="hide" from="Menu/Credits" to="." method="_on_Credits_hide"]

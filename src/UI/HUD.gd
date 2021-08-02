@@ -15,11 +15,11 @@ func set_hp_value(hp: int):
 
 
 func update_joystick():
-	if Global.has_joystick:
+	if Config.has_joystick:
 		$Joystick.show()
 	else:
 		$Joystick.hide()
 
 
 func update_joystick_sensitivity():
-	$Joystick.sensitivity = Global.joystick_sensitivity
+	$Joystick.sensitivity = Config.joystick_sensitivity

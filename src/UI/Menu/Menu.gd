@@ -2,18 +2,32 @@ extends Panel
 
 signal game_started
 signal configuration_opened
+signal credits_opened
 
 const start_message := "Dodge the Asteroids"
 
 
 func _ready():
+	$VersionLabel.text = 'v' + Utils.version
 	$MessageLabel.text = start_message
 	$StartButton.grab_focus()
 	show_exit_button()
 
+func show_buttons():
+	$StartButton.show()
+	$ConfigurationButton.show()
+	$CreditsButton.show()
+	show_exit_button()
+
+func hide_buttons():
+	$StartButton.hide()
+	$ConfigurationButton.hide()
+	$CreditsButton.hide()
+	$ExitButton.hide()
+
 
 func show_exit_button():
-	if Global.is_web:
+	if Utils.is_web:
 		$ExitButton.hide()
 	else:
 		$ExitButton.show()
@@ -51,6 +65,10 @@ func _on_MessageTimer_timeout():
 
 func _on_ConfigurationButton_pressed():
 	emit_signal("configuration_opened")
+
+
+func _on_CreditsButton_pressed():
+	emit_signal("credits_opened")
 
 
 func _on_ExitButton_pressed():

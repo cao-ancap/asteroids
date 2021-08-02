@@ -2,14 +2,14 @@
 
 [ext_resource path="res://Assets/Images/stick.svg" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/focus_stick.svg" type="Texture" id=2]
-[ext_resource path="res://UI/Joystick.gd" type="Script" id=3]
-[ext_resource path="res://UI/JoyButton.gd" type="Script" id=4]
+[ext_resource path="res://src/UI/Joystick/JoyButton.gd" type="Script" id=3]
+[ext_resource path="res://src/UI/Joystick/Joystick.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 160.0
 
 [node name="Joystick" type="Node2D"]
-script = ExtResource( 3 )
+script = ExtResource( 4 )
 
 [node name="JoyBack" type="Sprite" parent="."]
 modulate = Color( 0.12549, 0.12549, 0.12549, 0.752941 )
@@ -22,4 +22,4 @@ scale = Vector2( 0.64, 0.64 )
 normal = ExtResource( 1 )
 pressed = ExtResource( 2 )
 shape = SubResource( 1 )
-script = ExtResource( 4 )
+script = ExtResource( 3 )
