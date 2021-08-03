@@ -39,10 +39,10 @@ func force_reset():
 func _process(delta: float):
 	if not processing:
 		return
-		
+
 	var max_speed_delta := max_speed * delta
 	var disable_world_speed := false
-	
+
 	if position.x <= 32:
 		disable_world_speed = true
 		speed.x = pow((position.x / 16) - 3, 2) * max_speed_delta

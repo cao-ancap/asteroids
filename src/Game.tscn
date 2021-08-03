@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/Asteroid/Asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/StarField/StarField.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/UI/Menu/Menu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/Menu/CreditsMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/UI/MessageControl.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -53,6 +54,12 @@ position = Vector2( 128, 240 )
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 
+[node name="MessageControl" parent="." instance=ExtResource( 11 )]
+margin_left = 416.0
+margin_top = 128.0
+margin_right = 608.0
+margin_bottom = 232.0
+
 [node name="Menu" parent="." instance=ExtResource( 9 )]
 pause_mode = 2
 
@@ -65,6 +72,10 @@ margin_bottom = 384.0
 
 [node name="Credits" parent="Menu" instance=ExtResource( 10 )]
 visible = false
+margin_left = -128.0
+margin_top = 0.0
+margin_right = 512.0
+margin_bottom = 384.0
 
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]

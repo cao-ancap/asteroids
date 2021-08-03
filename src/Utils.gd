@@ -1,6 +1,6 @@
 extends Node
 
-const version := '0.0.9a'
+const version := "0.0.9a"
 
 const RAD_000_GRAUS := deg2rad(0)
 const RAD_045_GRAUS := deg2rad(45)
@@ -13,8 +13,10 @@ const RAD_315_GRAUS := deg2rad(315)
 
 onready var is_web := OS.get_name() == "HTML5"
 
+
 func _ready():
 	randomize()
+
 
 func rand_signal() -> int:
 	return (randi() & 2) - 1

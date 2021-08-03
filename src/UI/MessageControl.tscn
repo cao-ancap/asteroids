@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/MessageControl.gd" type="Script" id=1]
+
+[node name="MessageControl" type="Control"]
+margin_right = 192.0
+margin_bottom = 104.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageLabel" type="Label" parent="."]
+margin_right = 192.0
+margin_bottom = 104.0
+grow_horizontal = 2
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MessageTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="MessageTimer" to="." method="_on_MessageTimer_timeout"]

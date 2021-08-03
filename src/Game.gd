@@ -19,14 +19,16 @@ func _on_Menu_game_started():
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show()
-	$Menu.show_message("Get Ready")
+	$MessageControl.show_temp_message("Get Ready")
 	$BackgroundMusic.play()
 
 
 func game_over():
 	$ScoreTimer.stop()
 	$AsteroidTimer.stop()
-	$Menu.show_game_over()
+	$MessageControl.show_game_over()
+	yield(get_tree().create_timer(2), "timeout")
+	$Menu.show()
 	$BackgroundMusic.stop()
 	$HUD.hide()
 
@@ -65,7 +67,7 @@ func _on_Player_hp_updated(hp):
 
 func _on_Player_died():
 	game_over()
-	
+
 
 func _on_Menu_configuration_opened():
 	$Menu/Config.show()
@@ -87,6 +89,7 @@ func _on_Menu_credits_opened():
 func _on_Credits_hide():
 	$Menu.show_buttons()
 	$Menu/CreditsButton.grab_focus()
+
 
 func _on_Config_joystick_changed():
 	$HUD.update_joystick()

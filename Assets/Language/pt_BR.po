@@ -28,6 +28,9 @@ msgstr "Fim de Jogo"
 msgid "Configurations"
 msgstr "Configurações"
 
+msgid "Credits"
+msgstr "Créditos"
+
 msgid "Language"
 msgstr "Linguagem"
 
@@ -49,3 +52,20 @@ msgstr "Usar Joystick por Toque"
 msgid "Joystick Sensitivity"
 msgstr "Sensibilidade do Joystick"
 
+msgid "Art Design"
+msgstr "Arte"
+
+msgid "Sound Design"
+msgstr "Sons"
+
+msgid "Programming"
+msgstr "Programação"
+
+msgid "Special Thanks"
+msgstr "Agradecimentos especiais"
+
+msgid "Fairfax Station NF Font"
+msgstr "Fonte Fairfax Station NF"
+
+msgid "Rutaban Font"
+msgstr "Fonte Rutaban"
