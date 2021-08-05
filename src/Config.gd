@@ -5,11 +5,11 @@ const laguages := [
 	{"code": "en_US", "name": "English (United States)"}
 ]
 
-onready var has_joystick := not OS.get_name() in ["OSX", "Windows", "UWP", "X11"]
-
 var joystick_sensitivity := 60.0
 var dynamic_background_enabled := false
 var selected_laguage := 0
+
+onready var has_joystick := not OS.get_name() in ["OSX", "Windows", "UWP", "X11"]
 
 
 func select_language(index: int):

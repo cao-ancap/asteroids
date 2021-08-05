@@ -4,17 +4,27 @@ signal dynamic_background_changed
 signal joystick_changed
 signal sensitivity_changed
 
+var is_ready := false
+
+onready var ndJoystickButton := $JoystickButton
+onready var ndSensitivitySlider := $SensitivitySlider
+onready var ndBackgroundButton := $BackgroundButton
+onready var ndFullscreenButton := $FullscreenButton
+onready var ndLanguageButton := $LanguageButton
+
 
 func _ready():
-	$JoystickButton.pressed = Config.has_joystick
+	ndJoystickButton.pressed = Config.has_joystick
 	update_joystick_submenu_status()
-	$SensitivitySlider.value = Config.joystick_sensitivity
-	$BackgroundButton.pressed = Config.dynamic_background_enabled
-	$FullscreenButton.pressed = OS.window_fullscreen
+	ndSensitivitySlider.value = Config.joystick_sensitivity
+	ndBackgroundButton.pressed = Config.dynamic_background_enabled
+	ndFullscreenButton.pressed = OS.window_fullscreen
 	for laguage in Config.laguages:
-		$LanguageButton.add_item(laguage["name"])
+		ndLanguageButton.add_item(laguage["name"])
 
 	Config.select_language(Config.selected_laguage)
+
+	is_ready = true
 
 
 func _on_LanguageButton_item_selected(index: int):
@@ -27,7 +37,8 @@ func _on_CloseButton_pressed():
 
 func _on_BackgroundButton_toggled(enabled: bool):
 	Config.dynamic_background_enabled = enabled
-	emit_signal("dynamic_background_changed")
+	if is_ready:
+		emit_signal("dynamic_background_changed")
 
 
 func _on_FullscreenButton_toggled(enabled: bool):
@@ -36,17 +47,19 @@ func _on_FullscreenButton_toggled(enabled: bool):
 
 func update_joystick_submenu_status():
 	if Config.has_joystick:
-		$SensitivitySlider.editable = true
+		ndSensitivitySlider.editable = true
 	else:
-		$SensitivitySlider.editable = false
+		ndSensitivitySlider.editable = false
 
 
 func _on_JoystickButton_toggled(enabled: bool):
 	Config.has_joystick = enabled
 	update_joystick_submenu_status()
-	emit_signal("joystick_changed")
+	if is_ready:
+		emit_signal("joystick_changed")
 
 
 func _on_SensitivitySlider_value_changed(value):
 	Config.joystick_sensitivity = value
-	emit_signal("sensitivity_changed")
+	if is_ready:
+		emit_signal("sensitivity_changed")

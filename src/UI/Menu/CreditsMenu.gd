@@ -6,6 +6,9 @@ const anikid := "Anikid"
 const nl := "\n"
 const dl := "\n\n"
 
+onready var ndCredits := $Credits
+onready var ndCloseButton := $CloseButton
+
 
 func _ready():
 	update_text()
@@ -28,7 +31,7 @@ func update_text():
 		credit += "GDQuest" + nl
 		credit += "Gonkee" + nl
 
-		$Credits.bbcode_text = center(credit)
+		ndCredits.bbcode_text = center(credit)
 
 
 func center(text: String) -> String:

@@ -13,8 +13,7 @@ var ongoing_drag := -1
 
 func _process(delta: float):
 	if ongoing_drag == -1:
-		var pos_difference := (Vector2.ZERO - radius) - position
-		position += pos_difference * return_accel * delta
+		position += (-radius - position) * return_accel * delta
 
 
 func get_button_pos() -> Vector2:
@@ -22,14 +21,12 @@ func get_button_pos() -> Vector2:
 
 
 func _input(event: InputEvent):
-	if (
-		event is InputEventScreenTouch
-		and not event.is_pressed()
-		and event.get_index() == ongoing_drag
-	):
-		ongoing_drag = -1
+	var is_touch_event := event is InputEventScreenTouch
+	var is_drag_event := event is InputEventScreenDrag
+	if not (is_touch_event or is_drag_event):
 		return
-	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
+	var is_pressed := event.is_pressed()
+	if is_drag_event or (is_touch_event and is_pressed):
 		var event_dist_from_centre: float = (event.position - get_parent().global_position).length()
 
 		if (
@@ -43,3 +40,8 @@ func _input(event: InputEvent):
 				set_position(button_pos.normalized() * boundary - radius)
 
 			ongoing_drag = event.get_index()
+
+		return
+
+	if is_touch_event and not is_pressed and event.get_index() == ongoing_drag:
+		ongoing_drag = -1

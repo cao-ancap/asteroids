@@ -3,11 +3,11 @@ extends RigidBody2D
 signal died
 signal hp_updated(hp)
 
-var joystick: Node2D
-
 export var max_speed := 450.0
 export var world_speed := 0.0
 export var base_hp := 10
+
+var joystick: Node2D
 
 var hp: int
 
@@ -17,6 +17,13 @@ var start_pos := Vector2.ZERO
 
 var reset := false
 var processing := false
+
+onready var ndHitSound := $HitSound
+onready var ndExplosion := $Explosion
+onready var ndParticles2DR := $Particles2DR
+onready var ndParticles2DL := $Particles2DL
+onready var ndCollisionPolygon2D := $CollisionPolygon2D
+onready var ndSprite := $Sprite
 
 
 func _ready():
@@ -54,7 +61,7 @@ func _process(delta: float):
 		speed.y = -3 * max_speed_delta
 
 	var direction := Vector2.ZERO
-	if joystick:
+	if Config.has_joystick and joystick:
 		direction = joystick.get_direction()
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
@@ -108,7 +115,7 @@ func start(pos: Vector2):
 
 
 func _on_Player_body_entered(_body: Node):
-	$HitSound.random_pitch_play()
+	ndHitSound.random_pitch_play()
 	hp -= 1
 	emit_signal("hp_updated", hp)
 	if hp <= 0:
@@ -116,28 +123,28 @@ func _on_Player_body_entered(_body: Node):
 
 
 func die():
-	$Explosion.position = position - start_pos
-	$Explosion.play()
+	ndExplosion.position = position - start_pos
+	ndExplosion.play()
 	emit_signal("died")
 	hide_player()
 	force_reset()
 
 
 func show_player():
-	$Particles2DR.emitting = true
-	$Particles2DR.show()
-	$Particles2DL.emitting = true
-	$Particles2DL.show()
-	$CollisionPolygon2D.disabled = false
+	ndParticles2DR.emitting = true
+	ndParticles2DR.show()
+	ndParticles2DL.emitting = true
+	ndParticles2DL.show()
+	ndCollisionPolygon2D.disabled = false
 	processing = true
-	$Sprite.show()
+	ndSprite.show()
 
 
 func hide_player():
-	$Particles2DR.emitting = false
-	$Particles2DR.hide()
-	$Particles2DL.emitting = false
-	$Particles2DL.hide()
-	$CollisionPolygon2D.set_deferred("disabled", true)
+	ndParticles2DR.emitting = false
+	ndParticles2DR.hide()
+	ndParticles2DL.emitting = false
+	ndParticles2DL.hide()
+	ndCollisionPolygon2D.set_deferred("disabled", true)
 	processing = false
-	$Sprite.hide()
+	ndSprite.hide()

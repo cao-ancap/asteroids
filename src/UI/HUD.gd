@@ -1,5 +1,9 @@
 extends Control
 
+onready var ndScoreLabel := $ScoreLabel
+onready var ndHPBar := $HPBar
+onready var ndJoystick := $Joystick
+
 
 func _ready():
 	update_joystick()
@@ -7,19 +11,19 @@ func _ready():
 
 
 func update_score(score: int):
-	$ScoreLabel.text = str(score)
+	ndScoreLabel.text = str(score)
 
 
 func set_hp_value(hp: int):
-	$HPBar.value = hp
+	ndHPBar.value = hp
 
 
 func update_joystick():
 	if Config.has_joystick:
-		$Joystick.show()
+		ndJoystick.show()
 	else:
-		$Joystick.hide()
+		ndJoystick.hide()
 
 
 func update_joystick_sensitivity():
-	$Joystick.sensitivity = Config.joystick_sensitivity
+	ndJoystick.sensitivity = Config.joystick_sensitivity

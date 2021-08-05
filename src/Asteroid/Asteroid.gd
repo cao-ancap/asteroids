@@ -5,10 +5,13 @@ export var max_speed := 250.0
 export var max_angular_speed := 8.0
 export (Array, Texture) var textures
 
+onready var ndHitSound := $HitSound
+onready var ndSprite := $Sprite
+
 
 func _ready():
 	var type: int = randi() % textures.size()
-	$Sprite.texture = textures[type]
+	ndSprite.texture = textures[type]
 	angular_velocity = rand_range(-max_angular_speed, max_angular_speed)
 
 
@@ -17,4 +20,4 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Asteroid_body_entered(_body: Node):
-	$HitSound.random_pitch_play()
+	ndHitSound.random_pitch_play()

@@ -1,6 +1,8 @@
 extends Node2D
 
+onready var ndExplosionAnimation := $ExplosionAnimation
+
 
 func play():
-	$ExplosionAnimation.current_animation = "Explode"
-	$ExplosionAnimation.play()
+	ndExplosionAnimation.current_animation = "Explode"
+	ndExplosionAnimation.play()

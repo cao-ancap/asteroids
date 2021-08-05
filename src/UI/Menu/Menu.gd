@@ -4,33 +4,38 @@ signal game_started
 signal configuration_opened
 signal credits_opened
 
+onready var ndVersionLabel := $VersionLabel
+onready var ndStartButton := $StartButton
+onready var ndConfigurationButton := $ConfigurationButton
+onready var ndCreditsButton := $CreditsButton
+onready var ndExitButton := $ExitButton
+
 
 func _ready():
-	$VersionLabel.text = "v" + Utils.version
-	$StartButton.grab_focus()
+	ndVersionLabel.text = "v" + Utils.version
+	ndStartButton.grab_focus()
 	show_exit_button()
 
 
 func show_buttons():
-	$StartButton.show()
-	$ConfigurationButton.show()
-	$CreditsButton.show()
+	ndStartButton.show()
+	ndConfigurationButton.show()
+	ndCreditsButton.show()
 	show_exit_button()
 
 
 func hide_buttons():
-	$StartButton.hide()
-	$ConfigurationButton.hide()
-	$CreditsButton.hide()
-	$ExitButton.hide()
+	ndStartButton.hide()
+	ndConfigurationButton.hide()
+	ndCreditsButton.hide()
+	ndExitButton.hide()
 
 
 func show_exit_button():
 	if Utils.is_web:
-		$ExitButton.hide()
+		ndExitButton.hide()
 	else:
-		$ExitButton.show()
-
+		ndExitButton.show()
 
 
 func _on_StartButton_pressed():
