@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Assets/Fonts/FairfaxStationNF20.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/UI/Fonts/FairfaxStationNF20.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Menu/ConfigMenu.gd" type="Script" id=2]
 
 [sub_resource type="Theme" id=1]

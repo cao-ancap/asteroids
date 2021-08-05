@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "AudioStreamPlayer",
+"class": "RandomAudioStreamPlayer",
+"language": "GDScript",
+"path": "res://src/RandomAudioStreamPlayer.gd"
+} ]
+_global_script_class_icons={
+"RandomAudioStreamPlayer": ""
+}
+
 [application]
 
 config/name="Asteroids"
@@ -31,7 +41,7 @@ window/stretch/aspect="keep"
 
 [gui]
 
-theme/custom_font="res://Assets/Fonts/FairfaxStationNF.tres"
+theme/custom_font="res://src/UI/Fonts/FairfaxStationNF.tres"
 
 [importer_defaults]
 

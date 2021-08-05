@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Images/Asteroid/gray_asteroid.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Images/Asteroid/black_asteroid.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Images/Asteroid/brown_asteroid.png" type="Texture" id=3]
 [ext_resource path="res://src/Asteroid/Asteroid.gd" type="Script" id=4]
-[ext_resource path="res://Assets/Audio/HitSound.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Audio/hit.ogg" type="AudioStream" id=5]
+[ext_resource path="res://src/RandomAudioStreamPlayer.gd" type="Script" id=6]
 
 [sub_resource type="PhysicsMaterial" id=1]
 friction = 0.7
@@ -36,7 +37,9 @@ shape = SubResource( 2 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( -30, -29, 59, 59 )
 
-[node name="HitSound" parent="." instance=ExtResource( 5 )]
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+script = ExtResource( 6 )
 
 [connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
