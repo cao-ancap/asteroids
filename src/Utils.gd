@@ -1,6 +1,6 @@
 extends Node
 
-const version := "0.0.9a"
+const version := "0.0.10b"
 
 const RAD_000_GRAUS := deg2rad(0)
 const RAD_045_GRAUS := deg2rad(45)
