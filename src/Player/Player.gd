@@ -5,7 +5,6 @@ signal hp_updated(hp)
 
 export var max_speed := 450.0
 export var world_speed := 0.0
-export var base_hp := 10
 
 var joystick: Node2D
 
@@ -108,7 +107,7 @@ func _process(delta: float):
 
 func start(pos: Vector2):
 	start_pos = pos
-	hp = base_hp
+	hp = Utils.calc_difficulty_to_hp(Config.difficulty)
 	emit_signal("hp_updated", hp)
 	force_reset()
 	show_player()

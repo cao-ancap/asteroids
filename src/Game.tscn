@@ -29,6 +29,8 @@ emitting = false
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 visible = false
 
+[node name="Player" parent="." instance=ExtResource( 5 )]
+
 [node name="AsteroidPath" type="Path2D" parent="."]
 position = Vector2( -166.769, 25.8824 )
 scale = Vector2( 1.20192, 1.02941 )
@@ -36,8 +38,6 @@ curve = SubResource( 1 )
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 position = Vector2( 192, -64 )
-
-[node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
@@ -53,6 +53,8 @@ position = Vector2( 128, 240 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = 14.0
+bus = "Music"
 
 [node name="MessageControl" parent="." instance=ExtResource( 11 )]
 margin_left = 416.0
@@ -65,9 +67,9 @@ pause_mode = 2
 
 [node name="Config" parent="Menu" instance=ExtResource( 6 )]
 visible = false
-margin_left = -128.0
+margin_left = -248.0
 margin_top = 0.0
-margin_right = 512.0
+margin_right = 648.0
 margin_bottom = 384.0
 
 [node name="Credits" parent="Menu" instance=ExtResource( 10 )]
@@ -85,6 +87,7 @@ margin_bottom = 384.0
 [connection signal="configuration_opened" from="Menu" to="." method="_on_Menu_configuration_opened"]
 [connection signal="credits_opened" from="Menu" to="." method="_on_Menu_credits_opened"]
 [connection signal="game_started" from="Menu" to="." method="_on_Menu_game_started"]
+[connection signal="difficulty_changed" from="Menu/Config" to="." method="_on_Config_difficulty_changed"]
 [connection signal="dynamic_background_changed" from="Menu/Config" to="." method="_on_Config_dynamic_background_changed"]
 [connection signal="hide" from="Menu/Config" to="." method="_on_Config_hide"]
 [connection signal="joystick_changed" from="Menu/Config" to="." method="_on_Config_joystick_changed"]

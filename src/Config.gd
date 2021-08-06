@@ -8,6 +8,10 @@ const laguages := [
 var joystick_sensitivity := 60.0
 var dynamic_background_enabled := false
 var selected_laguage := 0
+var difficulty := 7
+var master_volume := 0
+var music_volume := 0
+var effect_volume := 0
 
 onready var has_joystick := not OS.get_name() in ["OSX", "Windows", "UWP", "X11"]
 

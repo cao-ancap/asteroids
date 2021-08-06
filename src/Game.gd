@@ -63,7 +63,7 @@ func _on_AsteroidTimer_timeout():
 	ndAsteroidSpawnLocation.offset = randi()
 
 	var asteroid: RigidBody2D = asteroid_scene.instance()
-	ndAsteroidPath.add_child(asteroid)
+	add_child_below_node(ndAsteroidPath, asteroid)
 
 	asteroid.position = ndAsteroidSpawnLocation.position
 
@@ -124,3 +124,7 @@ func config_dynamic_background():
 	else:
 		ndStarfield.stop()
 		ndStarfieldParallax.start(world_speed)
+
+
+func _on_Config_difficulty_changed():
+	ndHUD.reconfig_hp_bar()

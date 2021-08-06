@@ -24,3 +24,7 @@ func rand_signal() -> int:
 
 func rand_bool() -> bool:
 	return true if randi() & 1 else false
+
+
+func calc_difficulty_to_hp(difficulty: int):
+	return 10 - difficulty

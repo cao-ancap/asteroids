@@ -3,11 +3,16 @@ extends Control
 signal dynamic_background_changed
 signal joystick_changed
 signal sensitivity_changed
+signal difficulty_changed
 
 var is_ready := false
 
 onready var ndJoystickButton := $JoystickButton
 onready var ndSensitivitySlider := $SensitivitySlider
+onready var ndDifficultySlider := $DifficultySlider
+onready var ndMasterVolumeSlider := $MasterVolumeSlider
+onready var ndMusicVolumeSlider := $MusicVolumeSlider
+onready var ndEffectVolumeSlider := $EffectVolumeSlider
 onready var ndBackgroundButton := $BackgroundButton
 onready var ndFullscreenButton := $FullscreenButton
 onready var ndLanguageButton := $LanguageButton
@@ -17,6 +22,10 @@ func _ready():
 	ndJoystickButton.pressed = Config.has_joystick
 	update_joystick_submenu_status()
 	ndSensitivitySlider.value = Config.joystick_sensitivity
+	ndDifficultySlider.value = Config.difficulty
+	ndMasterVolumeSlider.value = Config.master_volume
+	ndMusicVolumeSlider.value = Config.music_volume
+	ndEffectVolumeSlider.value = Config.effect_volume
 	ndBackgroundButton.pressed = Config.dynamic_background_enabled
 	ndFullscreenButton.pressed = OS.window_fullscreen
 	for laguage in Config.laguages:
@@ -59,7 +68,28 @@ func _on_JoystickButton_toggled(enabled: bool):
 		emit_signal("joystick_changed")
 
 
-func _on_SensitivitySlider_value_changed(value):
+func _on_SensitivitySlider_value_changed(value: int):
 	Config.joystick_sensitivity = value
 	if is_ready:
 		emit_signal("sensitivity_changed")
+
+
+func _on_DifficultySlider_value_changed(value: int):
+	Config.difficulty = value
+	if is_ready:
+		emit_signal("difficulty_changed")
+
+
+func _on_MasterVolumeSlider_value_changed(value: int):
+	Config.master_volume = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+
+
+func _on_MusicVolumeSlider_value_changed(value: int):
+	Config.master_volume = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
+
+
+func _on_EffectVolumeSlider_value_changed(value: int):
+	Config.master_volume = value
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Effect"), value)
