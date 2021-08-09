@@ -99,8 +99,8 @@ func _process(delta: float):
 	if not disable_world_speed and speed.x > world_speed:
 		speed.x += world_speed * delta
 
-	speed.x = [[-max_speed, speed.x].max(), max_speed].min()
-	speed.y = [[-max_speed, speed.y].max(), max_speed].min()
+	speed.x = clamp(speed.x, -max_speed, max_speed)
+	speed.y = clamp(speed.y, -max_speed, max_speed)
 
 	linear_velocity = speed
 

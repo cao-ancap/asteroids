@@ -1,0 +1,6 @@
+#!/bin/bash
+
+godot --export "HTML5" "Build/Web/asteroids.html"
+godot --export "Linux/X11" "Build/Windows/asteroids.win64.exe"
+godot --export "Windows Desktop" "Build/LinuxIntel/asteroids.x11.x86_64"
+

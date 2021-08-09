@@ -2,8 +2,6 @@ extends TouchScreenButton
 
 # Based on: Gonkee's joystick script for Godot 3 - full tutorial https://youtu.be/uGyEP2LUFPg
 
-export var threshold := 10.0
-
 const radius := Vector2(32, 32)
 const boundary := 48.0
 const return_accel := 20.0
