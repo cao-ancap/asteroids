@@ -46,6 +46,12 @@ msgstr "Tela Cheia"
 msgid "Exit"
 msgstr "Sair"
 
+msgid "Hard"
+msgstr "Difícil"
+
+msgid "Easy"
+msgstr "Fácil"
+
 msgid "Use Touch Joystick"
 msgstr "Usar Joystick por Toque"
 

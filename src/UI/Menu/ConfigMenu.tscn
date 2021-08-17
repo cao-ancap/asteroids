@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/Fonts/FairfaxStationNF20.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Menu/ConfigMenu.gd" type="Script" id=2]
+[ext_resource path="res://src/UI/Fonts/FairfaxStationNF14.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Theme" id=1]
 default_font = ExtResource( 1 )
@@ -109,6 +110,30 @@ margin_left = 256.0
 margin_top = 176.0
 margin_right = 496.0
 margin_bottom = 192.0
+min_value = 10.0
+value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinLabel" type="Label" parent="SensitivitySlider"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Min"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="SensitivitySlider"]
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Max"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -136,6 +161,28 @@ margin_top = 216.0
 margin_right = 496.0
 margin_bottom = 232.0
 max_value = 9.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinLabel" type="Label" parent="DifficultySlider"]
+margin_top = 16.0
+margin_right = 128.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Easy"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="DifficultySlider"]
+margin_left = 128.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Hard"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -175,8 +222,31 @@ margin_left = 640.0
 margin_top = 56.0
 margin_right = 880.0
 margin_bottom = 72.0
+rect_pivot_offset = Vector2( -224, 160 )
 min_value = -40.0
 max_value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinLabel" type="Label" parent="MasterVolumeSlider"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Min"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="MasterVolumeSlider"]
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Max"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -202,6 +272,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MinLabel" type="Label" parent="MusicVolumeSlider"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Min"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="MusicVolumeSlider"]
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Max"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="EffectVolumeLabel" type="Label" parent="."]
 margin_left = 528.0
 margin_top = 136.0
@@ -219,6 +311,28 @@ margin_right = 880.0
 margin_bottom = 152.0
 min_value = -40.0
 max_value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MinLabel" type="Label" parent="EffectVolumeSlider"]
+margin_top = 16.0
+margin_right = 32.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Min"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MaxLabel" type="Label" parent="EffectVolumeSlider"]
+margin_left = 208.0
+margin_top = 16.0
+margin_right = 240.0
+margin_bottom = 32.0
+custom_fonts/font = ExtResource( 3 )
+text = "Max"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
