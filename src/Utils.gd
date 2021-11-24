@@ -26,25 +26,23 @@ func rand_bool() -> bool:
 	return true if randi() & 1 else false
 
 
-func calc_difficulty_to_hp(difficulty: int):
+func calc_difficulty_to_hp(difficulty: int) -> int:
 	return 10 - difficulty
 
+func parse_date(iso_date: String) -> Dictionary:
+	var date_time := iso_date.split("T")
+	var date := date_time[0].split("-")
+	var time := date_time[1].trim_suffix("Z").split(":")
 
-func create_signed_json(dict: Dictionary) -> String:
-	dict["_n"] = randi()
-	dict["_h"] = salt_hash(dict)
-	return JSON.print(dict)
+	return {
+		year = date[0],
+		month = date[1],
+		day = date[2],
+		hour = time[0],
+		minute = time[1],
+		second = time[2],
+	}
 
 
-func salt_hash(dict: Dictionary) -> String:
-	var o := dict.duplicate()
-	o["_n"] = calc_salt(o["_n"] if o["_n"] and o["_n"] != 0 else 249)
-	o["_ns"] = calc_salt(4651)
-	o["_ts"] = "dfjksduhajsnduygzyxndcowicxzujnqwbfuygysc"
-	return JSON.print(o).sha256_text()
-
-
-func calc_salt(n: float) -> String:
-	var x := sin(n) * 10000
-	var ac := acos(n) if n > -1 and n < 1 else acos(1 / n)
-	return "%0.10f" % (x + ac)
+func iso_from_date_dict(date: Dictionary) -> String:
+	return "%04d-%02d-%02dT%02d:%02d:%02d.000Z" % [date["year"] , date["month"] , date["day"] , date["hour"], date["minute"] , date["second"]]
