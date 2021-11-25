@@ -9,13 +9,37 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "RigidBody2D",
+"class": "Asteroid",
+"language": "GDScript",
+"path": "res://src/Asteroid/Asteroid.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "RandomAudioStreamPlayer",
 "language": "GDScript",
 "path": "res://src/RandomAudioStreamPlayer.gd"
+}, {
+"base": "HBoxContainer",
+"class": "ScoreLine",
+"language": "GDScript",
+"path": "res://src/UI/Score/ScoreLine.gd"
+}, {
+"base": "Node",
+"class": "ScoreService",
+"language": "GDScript",
+"path": "res://src/UI/Score/ScoreService.gd"
+}, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://src/Utils.gd"
 } ]
 _global_script_class_icons={
-"RandomAudioStreamPlayer": ""
+"Asteroid": "",
+"RandomAudioStreamPlayer": "",
+"ScoreLine": "",
+"ScoreService": "",
+"Utils": ""
 }
 
 [application]
@@ -26,9 +50,7 @@ config/icon="res://Assets/Images/Ships/ship.png"
 
 [autoload]
 
-Utils="*res://src/Utils.gd"
 Config="*res://src/Config.gd"
-ScoreServices="*res://src/ScoreServices.gd"
 
 [debug]
 

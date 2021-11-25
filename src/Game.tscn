@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/Asteroid/Asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/UI/Menu/Menu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/UI/Menu/CreditsMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/UI/MessageControl.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/UI/Score/ScoreMenu.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -58,9 +59,9 @@ bus = "Music"
 
 [node name="MessageControl" parent="." instance=ExtResource( 11 )]
 margin_left = 416.0
-margin_top = 128.0
+margin_top = 64.0
 margin_right = 608.0
-margin_bottom = 232.0
+margin_bottom = 176.0
 
 [node name="Menu" parent="." instance=ExtResource( 9 )]
 pause_mode = 2
@@ -79,6 +80,13 @@ margin_top = 0.0
 margin_right = 512.0
 margin_bottom = 384.0
 
+[node name="Scoreboard" parent="Menu" instance=ExtResource( 12 )]
+visible = false
+margin_left = -128.0
+margin_top = 0.0
+margin_right = 512.0
+margin_bottom = 384.0
+
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
@@ -87,9 +95,11 @@ margin_bottom = 384.0
 [connection signal="configuration_opened" from="Menu" to="." method="_on_Menu_configuration_opened"]
 [connection signal="credits_opened" from="Menu" to="." method="_on_Menu_credits_opened"]
 [connection signal="game_started" from="Menu" to="." method="_on_Menu_game_started"]
+[connection signal="scoreboard_opened" from="Menu" to="." method="_on_Menu_scoreboard_opened"]
 [connection signal="difficulty_changed" from="Menu/Config" to="." method="_on_Config_difficulty_changed"]
 [connection signal="dynamic_background_changed" from="Menu/Config" to="." method="_on_Config_dynamic_background_changed"]
 [connection signal="hide" from="Menu/Config" to="." method="_on_Config_hide"]
 [connection signal="joystick_changed" from="Menu/Config" to="." method="_on_Config_joystick_changed"]
 [connection signal="sensitivity_changed" from="Menu/Config" to="." method="_on_Config_sensitivity_changed"]
 [connection signal="hide" from="Menu/Credits" to="." method="_on_Credits_hide"]
+[connection signal="hide" from="Menu/Scoreboard" to="." method="_on_Scoreboard_hide"]

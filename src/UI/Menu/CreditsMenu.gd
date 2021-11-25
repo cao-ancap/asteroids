@@ -28,10 +28,13 @@ func update_text():
 		credit += make_title(tr("Special Thanks")) + nl
 		credit += "Nick Curtis - " + tr("Fairfax Station NF Font") + nl
 		credit += "Jason Pagura - " + tr("Rutaban Font") + nl
+		credit += "Severin Meyer - " + tr("Xolonium Font") + nl
 		credit += "GDQuest" + nl
 		credit += "Gonkee" + nl
 
 		ndCredits.bbcode_text = center(credit)
+	else:
+		ndCredits.bbcode_text = ""
 
 
 func center(text: String) -> String:

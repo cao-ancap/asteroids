@@ -33,9 +33,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -96.0
-margin_top = -0.5
+margin_top = -64.5
 margin_right = 96.0
-margin_bottom = 40.5
+margin_bottom = -23.5
 grow_horizontal = 2
 text = "Start"
 __meta__ = {
@@ -44,9 +44,9 @@ __meta__ = {
 
 [node name="ConfigurationButton" type="Button" parent="."]
 margin_left = 96.0
-margin_top = 248.0
+margin_top = 184.0
 margin_right = 288.0
-margin_bottom = 280.0
+margin_bottom = 216.0
 custom_fonts/font = ExtResource( 1 )
 text = "Configurations"
 __meta__ = {
@@ -55,20 +55,31 @@ __meta__ = {
 
 [node name="CreditsButton" type="Button" parent="."]
 margin_left = 96.0
-margin_top = 296.0
+margin_top = 232.0
 margin_right = 288.0
-margin_bottom = 328.0
+margin_bottom = 264.0
 custom_fonts/font = ExtResource( 1 )
 text = "Credits"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ScoreboardButton" type="Button" parent="."]
+margin_left = 96.0
+margin_top = 280.0
+margin_right = 288.0
+margin_bottom = 312.0
+custom_fonts/font = ExtResource( 1 )
+text = "Scoreboard"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ExitButton" type="Button" parent="."]
 margin_left = 96.0
-margin_top = 344.0
+margin_top = 328.0
 margin_right = 288.0
-margin_bottom = 376.0
+margin_bottom = 360.0
 custom_fonts/font = ExtResource( 1 )
 text = "Exit"
 __meta__ = {
@@ -78,4 +89,5 @@ __meta__ = {
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="ConfigurationButton" to="." method="_on_ConfigurationButton_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="ScoreboardButton" to="." method="_on_ScoreboardButton_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]

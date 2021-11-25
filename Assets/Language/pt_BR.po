@@ -28,14 +28,38 @@ msgstr "Fim de Jogo"
 msgid "Configurations"
 msgstr "Configurações"
 
+msgid "Scoreboard"
+msgstr "Tabela de pontuação"
+
 msgid "Credits"
 msgstr "Créditos"
+
+msgid "Player"
+msgstr "Jogador"
+
+msgid "Score"
+msgstr "Pontuação"
+
+msgid "Date"
+msgstr "Data"
 
 msgid "Language"
 msgstr "Linguagem"
 
 msgid "Close"
 msgstr "Fechar"
+
+msgid "Difficulty"
+msgstr "Dificuldade"
+
+msgid "Master"
+msgstr "Principal"
+
+msgid "Music"
+msgstr "Música"
+
+msgid "Effect"
+msgstr "Efeito"
 
 msgid "Dynamic Background"
 msgstr "Fundo Dinâmico"
@@ -75,3 +99,6 @@ msgstr "Fonte Fairfax Station NF"
 
 msgid "Rutaban Font"
 msgstr "Fonte Rutaban"
+
+msgid "Xolonium Font"
+msgstr "Fonte Xolonium"

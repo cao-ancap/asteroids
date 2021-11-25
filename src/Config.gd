@@ -1,8 +1,8 @@
 extends Node
 
 const laguages := [
-	{"code": "pt_BR", "name": "Português (Brasil)"},
-	{"code": "en_US", "name": "English (United States)"}
+	{code = "pt_BR", name = "Português (Brasil)"},
+	{code = "en_US", name = "English (United States)"}
 ]
 
 var joystick_sensitivity := 60.0

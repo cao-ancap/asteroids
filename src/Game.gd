@@ -13,6 +13,7 @@ onready var ndAsteroidSpawnLocation := $AsteroidPath/AsteroidSpawnLocation
 onready var ndMenu := $Menu
 onready var ndConfig := $Menu/Config
 onready var ndCredits := $Menu/Credits
+onready var ndScoreboard := $Menu/Scoreboard
 onready var ndMessageControl := $MessageControl
 onready var ndStartTimer := $StartTimer
 onready var ndScoreTimer := $ScoreTimer
@@ -23,6 +24,7 @@ onready var ndStarfieldParallax := $StarfieldParallax
 
 
 func _ready():
+	randomize()
 	config_dynamic_background()
 	ndPlayer.joystick = ndHUD.ndJoystick
 
@@ -62,7 +64,7 @@ func _on_StartTimer_timeout():
 func _on_AsteroidTimer_timeout():
 	ndAsteroidSpawnLocation.offset = randi()
 
-	var asteroid: RigidBody2D = asteroid_scene.instance()
+	var asteroid: Asteroid = asteroid_scene.instance()
 	add_child_below_node(ndAsteroidPath, asteroid)
 
 	asteroid.position = ndAsteroidSpawnLocation.position
@@ -103,6 +105,17 @@ func _on_Menu_credits_opened():
 func _on_Credits_hide():
 	ndMenu.show_buttons()
 	ndMenu.ndCreditsButton.grab_focus()
+
+
+func _on_Menu_scoreboard_opened():
+	ndScoreboard.show()
+	ndScoreboard.ndCloseButton.grab_focus()
+	ndMenu.hide_buttons()
+
+
+func _on_Scoreboard_hide():
+	ndMenu.show_buttons()
+	ndMenu.ndScoreboardButton.grab_focus()
 
 
 func _on_Config_joystick_changed():

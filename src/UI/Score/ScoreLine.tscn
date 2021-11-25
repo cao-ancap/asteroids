@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/UI/Score/ScoreLine.gd" type="Script" id=1]
+
+[node name="ScoreLine" type="HBoxContainer" groups=["scores"]]
+margin_right = 1024.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClassificationLabel" type="Label" parent="."]
+margin_right = 253.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerNameLabel" type="Label" parent="."]
+margin_left = 257.0
+margin_right = 510.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+autowrap = true
+
+[node name="ScoreLabel" type="Label" parent="."]
+margin_left = 514.0
+margin_right = 767.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DateLabel" type="Label" parent="."]
+margin_left = 771.0
+margin_right = 1024.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+align = 2
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
