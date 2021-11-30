@@ -3,7 +3,7 @@ extends Node
 export var asteroid_scene: PackedScene
 export var world_speed := -50.0
 
-var score := 0
+var status := GameStatus.new()
 
 onready var ndPlayer := $Player
 onready var ndStartPosition := $StartPosition
@@ -14,6 +14,7 @@ onready var ndMenu := $Menu
 onready var ndConfig := $Menu/Config
 onready var ndCredits := $Menu/Credits
 onready var ndScoreboard := $Menu/Scoreboard
+onready var ndScoreSend := $Menu/ScoreSend
 onready var ndMessageControl := $MessageControl
 onready var ndStartTimer := $StartTimer
 onready var ndScoreTimer := $ScoreTimer
@@ -31,11 +32,11 @@ func _ready():
 
 func _on_Menu_game_started():
 	get_tree().call_group("asteroids", "queue_free")
-	score = 0
+	status.start_game()
 	ndPlayer.world_speed = world_speed
 	ndPlayer.start(ndStartPosition.position)
 	ndStartTimer.start()
-	ndHUD.update_score(score)
+	ndHUD.update_score(status.get_score())
 	ndHUD.show()
 	ndMessageControl.show_temp_message("Get Ready")
 	ndBackgroundMusic.play()
@@ -44,16 +45,18 @@ func _on_Menu_game_started():
 func game_over():
 	ndScoreTimer.stop()
 	ndAsteroidTimer.stop()
+	status.end_game()
 	ndMessageControl.show_game_over()
 	yield(get_tree().create_timer(2), "timeout")
-	ndMenu.show()
 	ndBackgroundMusic.stop()
 	ndHUD.hide()
+	ndMenu.hide_buttons()
+	ndMenu.show()
+	ndScoreSend.show_menu(status.duplicate())
 
 
 func _on_ScoreTimer_timeout():
-	score += 1
-	ndHUD.update_score(score)
+	ndHUD.update_score(status.increment_score())
 
 
 func _on_StartTimer_timeout():
@@ -118,6 +121,11 @@ func _on_Scoreboard_hide():
 	ndMenu.ndScoreboardButton.grab_focus()
 
 
+func _on_ScoreSend_hide():
+	ndMenu.show_buttons()
+	ndMenu.ndScoreboardButton.grab_focus()
+
+
 func _on_Config_joystick_changed():
 	ndHUD.update_joystick()
 
@@ -141,3 +149,8 @@ func config_dynamic_background():
 
 func _on_Config_difficulty_changed():
 	ndHUD.reconfig_hp_bar()
+
+
+func _on_ScoreSend_score_registered():
+	yield(get_tree().create_timer(1), "timeout")
+	ndMenu.show_scoreboard()

@@ -3,6 +3,7 @@ extends Panel
 onready var scoreService := ScoreService.new()
 onready var ndListVBoxContainer := $ScrollContainer/ListVBoxContainer
 onready var ndCloseButton := $CloseButton
+onready var ndLoadingTextureRect := $LoadingTextureRect
 
 export var score_line_scene: PackedScene
 
@@ -12,16 +13,23 @@ func _ready():
 	var error := scoreService.connect("get_request_completed", self, "_on_get_request_completed")
 	if error != OK:
 		push_error("An error occurred at event connect.")
-	refresh_list()
 
 
 func refresh_list():
+	set_loading(true)
 	scoreService.get_scores()
 
 
-func _on_get_request_completed(_result, _response_code, _headers, body):
-	var json := JSON.parse(body.get_string_from_utf8())
-	fill_score_list(json.result)
+func set_loading(loading := true):
+	ndLoadingTextureRect.visible = loading
+
+
+func _on_get_request_completed(_result, response_code, _headers, body):
+	if response_code < 400:
+		var json := JSON.parse(body.get_string_from_utf8())
+		fill_score_list(json.result)
+
+	set_loading(false)
 
 
 func fill_score_list(data: Array):
@@ -29,10 +37,10 @@ func fill_score_list(data: Array):
 	for i in range(data.size()):
 		var item: ScoreLine = score_line_scene.instance()
 		var score: Dictionary = data[i]
-		item.classification = i + 1
-		item.player_name = score["playerName"]
-		item.score = score["score"]
-		item.date = score["creationDate"]
+		item.set_classification(i + 1)
+		item.set_player_name(score["playerName"])
+		item.set_score(score["score"])
+		item.set_date(score["creationDate"])
 		ndListVBoxContainer.add_child(item)
 
 

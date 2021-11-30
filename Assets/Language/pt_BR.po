@@ -13,8 +13,8 @@ msgstr ""
 "Language: pt_BR\n"
 
 
-msgid "Start"
-msgstr "Iniciar"
+msgid "Start!"
+msgstr "Iniciar!"
 
 msgid "Get Ready"
 msgstr "Se Prepare"
@@ -102,3 +102,15 @@ msgstr "Fonte Rutaban"
 
 msgid "Xolonium Font"
 msgstr "Fonte Xolonium"
+
+msgid "Do you want to submit your score?"
+msgstr "Deseja enviar a pontuação?"
+
+msgid "There was an error sending the score!"
+msgstr "Houve um erro ao enviar a pontuação!"
+
+msgid "Nickname"
+msgstr "Apelido"
+
+msgid "Send"
+msgstr "Enviar"

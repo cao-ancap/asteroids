@@ -71,14 +71,3 @@ func make_get_request(url: String):
 
 func _on_get_request_completed(result, response_code, headers, body):
 	emit_signal("get_request_completed", result, response_code, headers, body)
-
-
-func _ready():
-	pass
-#	var teste = {
-#		playerName = "teste",
-#		score = 123,
-#		startTime = Utils.iso_from_date_dict(OS.get_datetime(true)),
-#		endTime = Utils.iso_from_date_dict(OS.get_datetime(true))
-#	}
-#	send_score(teste)

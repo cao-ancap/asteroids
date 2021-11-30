@@ -13,6 +13,8 @@ var master_volume := 0
 var music_volume := 0
 var effect_volume := 0
 
+var player_name := ""
+
 onready var has_joystick := not OS.get_name() in ["OSX", "Windows", "UWP", "X11"]
 
 

@@ -37,7 +37,7 @@ margin_top = -64.5
 margin_right = 96.0
 margin_bottom = -23.5
 grow_horizontal = 2
-text = "Start"
+text = "Start!"
 __meta__ = {
 "_edit_use_anchors_": false
 }

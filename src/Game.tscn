@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/Asteroid/Asteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/UI/Menu/CreditsMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/UI/MessageControl.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/UI/Score/ScoreMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/UI/Score/ScoreSendMenu.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -87,6 +88,12 @@ margin_top = 0.0
 margin_right = 512.0
 margin_bottom = 384.0
 
+[node name="ScoreSend" parent="Menu" instance=ExtResource( 13 )]
+visible = false
+margin_left = -128.0
+margin_right = 512.0
+margin_bottom = 257.0
+
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
@@ -103,3 +110,5 @@ margin_bottom = 384.0
 [connection signal="sensitivity_changed" from="Menu/Config" to="." method="_on_Config_sensitivity_changed"]
 [connection signal="hide" from="Menu/Credits" to="." method="_on_Credits_hide"]
 [connection signal="hide" from="Menu/Scoreboard" to="." method="_on_Scoreboard_hide"]
+[connection signal="hide" from="Menu/ScoreSend" to="." method="_on_ScoreSend_hide"]
+[connection signal="score_registered" from="Menu/ScoreSend" to="." method="_on_ScoreSend_score_registered"]

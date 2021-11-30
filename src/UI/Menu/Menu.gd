@@ -30,6 +30,7 @@ func show_buttons():
 func hide_buttons():
 	ndStartButton.hide()
 	ndConfigurationButton.hide()
+	ndCreditsButton.hide()
 	ndScoreboardButton.hide()
 	ndExitButton.hide()
 
@@ -55,6 +56,10 @@ func _on_CreditsButton_pressed():
 
 
 func _on_ScoreboardButton_pressed():
+	emit_signal("scoreboard_opened")
+
+
+func show_scoreboard():
 	emit_signal("scoreboard_opened")
 
 

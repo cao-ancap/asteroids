@@ -5,7 +5,9 @@
 [ext_resource path="res://src/UI/Fonts/FairfaxStationNF14.tres" type="DynamicFont" id=3]
 
 [sub_resource type="Theme" id=1]
-default_font = ExtResource( 1 )
+Label/fonts/font = ExtResource( 1 )
+OptionButton/fonts/font = ExtResource( 1 )
+PopupMenu/fonts/font = ExtResource( 1 )
 
 [node name="ConfigMenu" type="Panel"]
 margin_left = 64.0
