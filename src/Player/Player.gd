@@ -2,6 +2,7 @@ extends RigidBody2D
 
 signal died
 signal hp_updated(hp)
+signal immune_enabled
 
 export var max_speed := 450.0
 export var world_speed := 0.0
@@ -24,6 +25,7 @@ onready var ndParticles2DL := $Particles2DL
 onready var ndCollisionPolygon2D := $CollisionPolygon2D
 onready var ndSprite := $Sprite
 
+var immune := false
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -41,6 +43,17 @@ func _integrate_forces(state: Physics2DDirectBodyState):
 func force_reset():
 	reset = true
 
+
+func set_power(power: float):
+	if power < 0.0:
+			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-2.0)
+			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-2.0)
+	elif power > 0.0:
+			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-16.0)
+			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-16.0)
+	else:
+			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-10.0)
+			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-10.0)
 
 func _process(delta: float):
 	if not processing:
@@ -63,14 +76,14 @@ func _process(delta: float):
 	if Config.has_joystick and joystick:
 		direction = joystick.get_direction()
 	if Input.is_action_pressed("move_right"):
-		direction.x = 1
+		direction.x += 1
 	if Input.is_action_pressed("move_left"):
-		direction.x = -1
+		direction.x -= 1
 	if Input.is_action_pressed("move_down"):
-		direction.y = 1
+		direction.y += 1
 	if Input.is_action_pressed("move_up"):
-		direction.y = -1
-
+		direction.y -= 1
+	
 	if direction.length() > 0:
 		direction = direction.normalized()
 
@@ -103,6 +116,8 @@ func _process(delta: float):
 	speed.y = clamp(speed.y, -max_speed, max_speed)
 
 	linear_velocity = speed
+	
+	set_power(direction.x)
 
 
 func start(pos: Vector2):
@@ -114,11 +129,17 @@ func start(pos: Vector2):
 
 
 func _on_Player_body_entered(_body: Node):
+	if immune:
+		return
+	immune = true
 	ndHitSound.random_pitch_play()
 	hp -= 1
 	emit_signal("hp_updated", hp)
 	if hp <= 0:
 		die()
+		immune = false
+	else:
+		emit_signal("immune_enabled")
 
 
 func die():
@@ -147,3 +168,13 @@ func hide_player():
 	ndCollisionPolygon2D.set_deferred("disabled", true)
 	processing = false
 	ndSprite.hide()
+
+
+func _on_Player_immune_enabled():
+	for i in range(3):
+		if i > 0:
+			yield(get_tree().create_timer(0.1), "timeout")
+		ndSprite.modulate = Color(1.5,1,1)
+		yield(get_tree().create_timer(0.2), "timeout")
+		ndSprite.modulate = Color(1,1,1)
+	immune = false
