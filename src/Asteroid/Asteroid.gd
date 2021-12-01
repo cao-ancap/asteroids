@@ -8,6 +8,7 @@ export (Array, Texture) var textures
 
 onready var ndHitSound := $HitSound
 onready var ndSprite := $Sprite
+onready var ndParticles2D := $Particles2D
 
 
 func _ready():
@@ -22,3 +23,4 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 func _on_Asteroid_body_entered(_body: Node):
 	ndHitSound.random_pitch_play()
+	ndParticles2D.emitting = true
