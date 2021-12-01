@@ -31,6 +31,7 @@ func _ready():
 
 
 func _on_Menu_game_started():
+	ndScoreTimer.wait_time = 1.0/Config.difficulty
 	get_tree().call_group("asteroids", "queue_free")
 	status.start_game()
 	ndPlayer.world_speed = world_speed
@@ -152,5 +153,5 @@ func _on_Config_difficulty_changed():
 
 
 func _on_ScoreSend_score_registered():
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	ndMenu.show_scoreboard()

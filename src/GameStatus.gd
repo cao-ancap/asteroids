@@ -1,6 +1,7 @@
 class_name GameStatus
 
-var _player_name := "" setget set_player_name, get_player_name
+var _player_name := Config.player_name setget set_player_name, get_player_name
+var _difficulty := Config.difficulty
 var _score := 0 setget , get_score
 var _start_time: Dictionary
 var _end_time: Dictionary
@@ -9,6 +10,7 @@ var _game_ended := false
 
 func start_game():
 	_player_name = Config.player_name
+	_difficulty = Config.difficulty
 	_score = 0
 	_start_time = OS.get_datetime(true)
 	_end_time.clear()
@@ -46,6 +48,7 @@ func get_status() -> Dictionary:
 	if _game_ended:
 		return {
 			playerName = _player_name,
+			difficulty = _difficulty,
 			score = _score,
 			startTime = Utils.iso_from_date_dict(_start_time),
 			endTime = Utils.iso_from_date_dict(_end_time)
@@ -56,6 +59,7 @@ func get_status() -> Dictionary:
 func duplicate() -> GameStatus:
 	var status: GameStatus = get_script().new()
 	status._player_name = _player_name
+	status._difficulty = _difficulty
 	status._score = _score
 	status._start_time = _start_time
 	status._end_time = _end_time

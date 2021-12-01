@@ -91,8 +91,9 @@ margin_bottom = 384.0
 [node name="ScoreSend" parent="Menu" instance=ExtResource( 13 )]
 visible = false
 margin_left = -128.0
+margin_top = 112.0
 margin_right = 512.0
-margin_bottom = 257.0
+margin_bottom = 305.0
 
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]

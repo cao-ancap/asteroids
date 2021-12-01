@@ -27,9 +27,11 @@ func _ready():
 	ndMusicVolumeSlider.value = Config.music_volume
 	ndEffectVolumeSlider.value = Config.effect_volume
 	ndBackgroundButton.pressed = Config.dynamic_background_enabled
-	ndFullscreenButton.pressed = OS.window_fullscreen
+	ndFullscreenButton.pressed = Config.fullscreen
 	for laguage in Config.laguages:
 		ndLanguageButton.add_item(laguage["name"])
+		
+	ndLanguageButton.selected = Config.selected_laguage
 
 	Config.select_language(Config.selected_laguage)
 
@@ -41,6 +43,7 @@ func _on_LanguageButton_item_selected(index: int):
 
 
 func _on_CloseButton_pressed():
+	Config.save()
 	hide()
 
 
@@ -51,7 +54,7 @@ func _on_BackgroundButton_toggled(enabled: bool):
 
 
 func _on_FullscreenButton_toggled(enabled: bool):
-	OS.window_fullscreen = enabled
+	Config.set_fullscreen(enabled)
 
 
 func update_joystick_submenu_status():
@@ -82,14 +85,14 @@ func _on_DifficultySlider_value_changed(value: int):
 
 func _on_MasterVolumeSlider_value_changed(value: int):
 	Config.master_volume = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), value)
+	AudioServer.set_bus_volume_db(Config.master_volume_index, value)
 
 
 func _on_MusicVolumeSlider_value_changed(value: int):
-	Config.master_volume = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), value)
+	Config.music_volume = value
+	AudioServer.set_bus_volume_db(Config.music_volume_index, value)
 
 
 func _on_EffectVolumeSlider_value_changed(value: int):
-	Config.master_volume = value
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Effect"), value)
+	Config.effect_volume = value
+	AudioServer.set_bus_volume_db(Config.effect_volume_index, value)

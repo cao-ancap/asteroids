@@ -50,4 +50,5 @@ func _on_SendButton_pressed():
 	set_loading(true)
 	_score.set_player_name(ndPlayerNameLineEdit.text)
 	Config.player_name = ndPlayerNameLineEdit.text
+	Config.save()
 	scoreService.send_score(_score.get_status())
