@@ -174,7 +174,7 @@ func _on_Player_immune_enabled():
 	for i in range(3):
 		if i > 0:
 			yield(get_tree().create_timer(0.1), "timeout")
-		ndSprite.modulate = Color(1.5,1,1)
+		ndSprite.modulate = Color(1.7,0.8,0.5)
 		yield(get_tree().create_timer(0.2), "timeout")
 		ndSprite.modulate = Color(1,1,1)
 	immune = false

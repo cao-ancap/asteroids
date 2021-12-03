@@ -31,8 +31,6 @@ emitting = false
 [node name="HUD" parent="." instance=ExtResource( 4 )]
 visible = false
 
-[node name="Player" parent="." instance=ExtResource( 5 )]
-
 [node name="AsteroidPath" type="Path2D" parent="."]
 position = Vector2( -166.769, 25.8824 )
 scale = Vector2( 1.20192, 1.02941 )
@@ -40,6 +38,8 @@ curve = SubResource( 1 )
 
 [node name="AsteroidSpawnLocation" type="PathFollow2D" parent="AsteroidPath"]
 position = Vector2( 192, -64 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
 
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
