@@ -18,13 +18,17 @@ max_value = 0.2
 _data = [ Vector2( 0, 0.16 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 0.16 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.00307617 ), -0.969239, 0.0, 0, 0 ]
 
 [sub_resource type="CurveTexture" id=5]
+width = 32
 curve = SubResource( 4 )
 
 [sub_resource type="ParticlesMaterial" id=3]
 lifetime_randomness = 1.0
-emission_shape = 1
-emission_sphere_radius = 20.0
+emission_shape = 5
+emission_ring_radius = 26.0
+emission_ring_inner_radius = 24.0
+emission_ring_height = 0.0
 flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
 spread = 180.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 80.0
@@ -34,6 +38,8 @@ angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale_curve = SubResource( 5 )
+hue_variation = 0.05
+hue_variation_random = 0.5
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 29.3914
@@ -53,6 +59,8 @@ emitting = false
 amount = 6
 lifetime = 2.0
 one_shot = true
+explosiveness = 1.0
+randomness = 0.5
 local_coords = false
 process_material = SubResource( 3 )
 texture = ExtResource( 7 )
