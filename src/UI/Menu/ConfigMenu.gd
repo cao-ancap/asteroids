@@ -30,7 +30,7 @@ func _ready():
 	ndFullscreenButton.pressed = Config.fullscreen
 	for laguage in Config.laguages:
 		ndLanguageButton.add_item(laguage["name"])
-		
+
 	ndLanguageButton.selected = Config.selected_laguage
 
 	Config.select_language(Config.selected_laguage)

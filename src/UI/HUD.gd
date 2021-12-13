@@ -12,6 +12,7 @@ func _ready():
 	update_joystick_sensitivity()
 	reconfig_hp_bar()
 
+
 func reconfig_hp_bar():
 	ndHPBar.max_value = Utils.calc_difficulty_to_hp(Config.difficulty)
 

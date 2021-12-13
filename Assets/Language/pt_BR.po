@@ -114,3 +114,12 @@ msgstr "Apelido"
 
 msgid "Send"
 msgstr "Enviar"
+
+msgid "Resume"
+msgstr "Continuar"
+
+msgid "End"
+msgstr "Encerrar"
+
+msgid "Pause"
+msgstr "Parar"

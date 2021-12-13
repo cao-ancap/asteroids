@@ -27,6 +27,7 @@ onready var ndSprite := $Sprite
 
 var immune := false
 
+
 func _ready():
 	screen_size = get_viewport_rect().size
 	hide_player()
@@ -46,14 +47,27 @@ func force_reset():
 
 func set_power(power: float):
 	if power < 0.0:
-			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-2.0)
-			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-2.0)
+		ndParticles2DR.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -2.0
+		)
+		ndParticles2DL.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -2.0
+		)
 	elif power > 0.0:
-			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-16.0)
-			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-16.0)
+		ndParticles2DR.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -16.0
+		)
+		ndParticles2DL.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -16.0
+		)
 	else:
-			ndParticles2DR.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-10.0)
-			ndParticles2DL.process_material.set_param(ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY,-10.0)
+		ndParticles2DR.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -10.0
+		)
+		ndParticles2DL.process_material.set_param(
+			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -10.0
+		)
+
 
 func _process(delta: float):
 	if not processing:
@@ -83,7 +97,7 @@ func _process(delta: float):
 		direction.y += 1
 	if Input.is_action_pressed("move_up"):
 		direction.y -= 1
-	
+
 	if direction.length() > 0:
 		direction = direction.normalized()
 
@@ -116,7 +130,7 @@ func _process(delta: float):
 	speed.y = clamp(speed.y, -max_speed, max_speed)
 
 	linear_velocity = speed
-	
+
 	set_power(direction.x)
 
 
@@ -148,9 +162,11 @@ func die():
 	emit_signal("died")
 	set_dead()
 
+
 func set_dead():
 	hide_player()
 	force_reset()
+
 
 func show_player():
 	ndParticles2DR.emitting = true
@@ -176,7 +192,7 @@ func _on_Player_immune_enabled():
 	for i in range(3):
 		if i > 0:
 			yield(get_tree().create_timer(0.1), "timeout")
-		ndSprite.modulate = Color(1.7,0.8,0.5)
+		ndSprite.modulate = Color(1.7, 0.8, 0.5)
 		yield(get_tree().create_timer(0.2), "timeout")
-		ndSprite.modulate = Color(1,1,1)
+		ndSprite.modulate = Color(1, 1, 1)
 	immune = false

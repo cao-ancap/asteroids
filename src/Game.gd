@@ -32,7 +32,7 @@ func _ready():
 
 
 func _on_Menu_game_started():
-	ndScoreTimer.wait_time = 1.0/Config.difficulty
+	ndScoreTimer.wait_time = 1.0 / Config.difficulty
 	get_tree().call_group("asteroids", "queue_free")
 	status.start_game()
 	ndPlayer.world_speed = world_speed
@@ -73,13 +73,13 @@ func _on_StartTimer_timeout():
 
 func _on_AsteroidTimer_timeout():
 	ndAsteroidSpawnLocation.offset = randi()
-	
+
 	var asteroid_count := asteroid_scenes.size()
 	if not asteroid_count:
 		return
-	
+
 	var type := randi() % asteroid_count
-	var asteroid_scene : PackedScene = asteroid_scenes[type]
+	var asteroid_scene: PackedScene = asteroid_scenes[type]
 
 	var asteroid: Asteroid = asteroid_scene.instance()
 	add_child_below_node(ndAsteroidPath, asteroid)
