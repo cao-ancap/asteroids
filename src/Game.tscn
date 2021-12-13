@@ -1,6 +1,6 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=26 format=2]
 
-[ext_resource path="res://src/Asteroid/Asteroid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/Asteroid/BrownAsteroid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Audio/heart_beat.ogg" type="AudioStream" id=2]
 [ext_resource path="res://src/StarField/StarfieldBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/UI/HUD.tscn" type="PackedScene" id=4]
@@ -13,6 +13,17 @@
 [ext_resource path="res://src/UI/MessageControl.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/UI/Score/ScoreMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/UI/Score/ScoreSendMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Asteroid/GrayAsteroid.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/Asteroid/BlackAsteroid.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/Asteroid/BigAsteroid.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/Asteroid/SmallAsteroid0.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/Asteroid/SmallAsteroid1.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/Asteroid/SmallAsteroid5.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/Asteroid/SmallAsteroid3.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/Asteroid/SmallAsteroid4.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/Asteroid/SmallAsteroid2.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/Asteroid/SmallAsteroid6.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/UI/PauseMenu.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -21,7 +32,7 @@ _data = {
 
 [node name="Game" type="Node"]
 script = ExtResource( 7 )
-asteroid_scene = ExtResource( 1 )
+asteroid_scenes = [ ExtResource( 15 ), ExtResource( 1 ), ExtResource( 14 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 22 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 23 ) ]
 
 [node name="StarfieldParallax" parent="." instance=ExtResource( 3 )]
 
@@ -59,6 +70,7 @@ volume_db = 14.0
 bus = "Music"
 
 [node name="MessageControl" parent="." instance=ExtResource( 11 )]
+visible = false
 margin_left = 416.0
 margin_top = 64.0
 margin_right = 608.0
@@ -95,6 +107,13 @@ margin_top = 112.0
 margin_right = 512.0
 margin_bottom = 305.0
 
+[node name="PauseMenu" parent="." instance=ExtResource( 24 )]
+pause_mode = 2
+visible = false
+margin_top = 176.0
+margin_bottom = 304.0
+
+[connection signal="paused" from="HUD" to="." method="_on_HUD_paused"]
 [connection signal="died" from="Player" to="." method="_on_Player_died"]
 [connection signal="hp_updated" from="Player" to="." method="_on_Player_hp_updated"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
@@ -113,3 +132,5 @@ margin_bottom = 305.0
 [connection signal="hide" from="Menu/Scoreboard" to="." method="_on_Scoreboard_hide"]
 [connection signal="hide" from="Menu/ScoreSend" to="." method="_on_ScoreSend_hide"]
 [connection signal="score_registered" from="Menu/ScoreSend" to="." method="_on_ScoreSend_score_registered"]
+[connection signal="quited" from="PauseMenu" to="." method="_on_PauseMenu_quited"]
+[connection signal="resumed" from="PauseMenu" to="." method="_on_PauseMenu_resumed"]

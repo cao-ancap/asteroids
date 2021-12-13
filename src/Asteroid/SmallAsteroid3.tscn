@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Asteroid/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://src/Asteroid/AsteroidParticlesVSmall.tres" type="Material" id=2]
+[ext_resource path="res://Assets/Images/Asteroid/meteor_small_3.png" type="Texture" id=3]
+[ext_resource path="res://src/RandomAudioStreamPlayer.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Audio/hit.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Images/Asteroid/meteor_v_small_0.png" type="Texture" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.7
+rough = true
+bounce = 0.6
+
+[node name="Asteroid" type="RigidBody2D" groups=["asteroids"]]
+mass = 0.1
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 1
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+local_coords = false
+process_material = ExtResource( 2 )
+texture = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, -1 )
+texture = ExtResource( 3 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -2.78406, -9.13171 )
+polygon = PoolVector2Array( -10.6829, -1.79119, 1.72032, -21.7625, 6.24014, -22.0778, 9.18327, -17.558, 11.8111, -4.20877, 17.1718, 10.8223, 15.8053, 17.3392, 6.24014, 34.5449, 5.50435, 38.1187, 0.984531, 38.4341, -3.32506, 33.2836, -6.79376, 10.612, -10.4727, 3.04396 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.271187, -0.54237 )
+scale = Vector2( 0.542373, 1.08475 )
+rect = Rect2( -30, -29, 59, 59 )
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Effect"
+script = ExtResource( 4 )
+
+[connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

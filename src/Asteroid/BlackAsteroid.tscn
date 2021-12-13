@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://src/Asteroid/AsteroidParticles.tres" type="Material" id=1]
+[ext_resource path="res://Assets/Images/Asteroid/black_asteroid.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Images/Asteroid/meteor_v_small_0.png" type="Texture" id=3]
+[ext_resource path="res://src/Asteroid/Asteroid.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Audio/hit.ogg" type="AudioStream" id=5]
+[ext_resource path="res://src/RandomAudioStreamPlayer.gd" type="Script" id=6]
+
+[sub_resource type="PhysicsMaterial" id=1]
+friction = 0.7
+rough = true
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 28.1082
+
+[node name="Asteroid" type="RigidBody2D" groups=["asteroids"]]
+mass = 1.5
+physics_material_override = SubResource( 1 )
+gravity_scale = 0.0
+contacts_reported = 1
+contact_monitor = true
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 6
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+local_coords = false
+process_material = ExtResource( 1 )
+texture = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 1, 0 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.542374, 0.474575 )
+scale = Vector2( 1.08475, 1.05085 )
+rect = Rect2( -30, -29, 59, 59 )
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Effect"
+script = ExtResource( 6 )
+
+[connection signal="body_entered" from="." to="." method="_on_Asteroid_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -146,9 +146,11 @@ func die():
 	ndExplosion.position = position - start_pos
 	ndExplosion.play()
 	emit_signal("died")
+	set_dead()
+
+func set_dead():
 	hide_player()
 	force_reset()
-
 
 func show_player():
 	ndParticles2DR.emitting = true

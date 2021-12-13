@@ -1,13 +1,35 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/UI/HUD.gd" type="Script" id=1]
+[ext_resource path="res://src/UI/Style/RedButtonDisabledStyle.tres" type="StyleBox" id=2]
 [ext_resource path="res://src/UI/Joystick/Joystick.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UI/Style/RedButtonFocusStyle.tres" type="StyleBox" id=4]
+[ext_resource path="res://src/UI/Style/RedButtonStyle.tres" type="StyleBox" id=5]
+[ext_resource path="res://src/UI/Style/RedButtonPressedStyle.tres" type="StyleBox" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.501961, 0, 0.501961 )
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.501961, 0, 0, 0.501961 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.752941, 0, 0, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="InputEventAction" id=4]
+action = "game_pause"
+pressed = true
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
 [node name="HUD" type="Control"]
 script = ExtResource( 1 )
@@ -21,7 +43,7 @@ position = Vector2( 104, 376 )
 [node name="ScoreLabel" type="Label" parent="."]
 margin_left = 760.0
 margin_right = 1014.0
-margin_bottom = 64.0
+margin_bottom = 40.0
 text = "0"
 align = 2
 __meta__ = {
@@ -40,3 +62,18 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PauseButton" type="Button" parent="."]
+margin_left = 920.0
+margin_top = 40.0
+margin_right = 1016.0
+margin_bottom = 81.0
+custom_styles/hover = SubResource( 3 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 2 )
+custom_styles/normal = ExtResource( 5 )
+shortcut = SubResource( 5 )
+text = "Pause"
+
+[connection signal="pressed" from="PauseButton" to="." method="_on_PauseButton_pressed"]
