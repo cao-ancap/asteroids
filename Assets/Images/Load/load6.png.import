@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/focus_stick.svg-6ccc428d6fbe99c1735fbe7701e34776.stex"
+path="res://.import/load6.png-410af57b4c20ec79f0ab4d7db5a5e4d4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/focus_stick.svg"
-dest_files=[ "res://.import/focus_stick.svg-6ccc428d6fbe99c1735fbe7701e34776.stex" ]
+source_file="res://Assets/Images/Load/load6.png"
+dest_files=[ "res://.import/load6.png-410af57b4c20ec79f0ab4d7db5a5e4d4.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

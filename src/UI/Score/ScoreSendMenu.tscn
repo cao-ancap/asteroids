@@ -1,38 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/Fonts/FairfaxStationNF20.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/UI/Score/ScoreSendMenu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Images/load/load4.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Images/load/load0.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/load/load6.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Images/load/load5.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/load/load1.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/load/load7.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/load/load2.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Images/load/load3.png" type="Texture" id=10]
+[ext_resource path="res://src/UI/LoadingTexture.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Theme" id=1]
 Label/fonts/font = ExtResource( 1 )
 LineEdit/fonts/font = ExtResource( 1 )
-
-[sub_resource type="AnimatedTexture" id=2]
-frames = 8
-fps = 24.0
-frame_0/texture = ExtResource( 4 )
-frame_1/texture = ExtResource( 7 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 9 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 10 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 3 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 6 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 5 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 8 )
-frame_7/delay_sec = 0.0
 
 [node name="ScoreSendMenu" type="Panel"]
 margin_left = 192.0
@@ -95,17 +69,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadingTextureRect" type="TextureRect" parent="."]
-visible = false
-margin_left = 472.0
-margin_top = 150.0
-margin_right = 496.0
-margin_bottom = 174.0
-texture = SubResource( 2 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="LoadingTextureRect" parent="." instance=ExtResource( 3 )]
 
 [node name="ErrorAcceptDialog" type="AcceptDialog" parent="."]
 margin_left = 64.0

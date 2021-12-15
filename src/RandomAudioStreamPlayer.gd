@@ -1,5 +1,5 @@
-extends AudioStreamPlayer
 class_name RandomAudioStreamPlayer
+extends AudioStreamPlayer
 
 export var pitch_min := 0.85
 export var pitch_max := 1.25

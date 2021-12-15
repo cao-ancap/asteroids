@@ -1,6 +1,6 @@
 class_name Utils
 
-const version := "0.1.3"
+const VERSION := "0.1.34rc"
 
 const RAD_000_GRAUS := deg2rad(0)
 const RAD_045_GRAUS := deg2rad(45)
@@ -11,17 +11,22 @@ const RAD_225_GRAUS := deg2rad(225)
 const RAD_270_GRAUS := deg2rad(270)
 const RAD_315_GRAUS := deg2rad(315)
 
+
 static func is_web() -> bool:
 	return OS.get_name() == "HTML5"
+
 
 static func rand_signal() -> int:
 	return (randi() & 2) - 1
 
+
 static func rand_bool() -> bool:
 	return true if randi() & 1 else false
 
+
 static func calc_difficulty_to_hp(difficulty: int) -> int:
 	return 10 - difficulty
+
 
 static func parse_date(iso_date: String) -> Dictionary:
 	var date_time := iso_date.split("T")
@@ -37,6 +42,7 @@ static func parse_date(iso_date: String) -> Dictionary:
 		second = int(time[2])
 	}
 
+
 static func get_date_locale_string(iso_date: String) -> String:
 	var date := parse_date(iso_date)
 	var locale := TranslationServer.get_locale()
@@ -46,11 +52,14 @@ static func get_date_locale_string(iso_date: String) -> String:
 		_:
 			return "%04d-%02d-%02d" % [date["year"], date["month"], date["day"]]
 
+
 static func parse_date_to_unix_time(iso_date: String) -> int:
 	return OS.get_unix_time_from_datetime(parse_date(iso_date))
 
+
 static func parse_date_full(iso_date: String) -> Dictionary:
 	return OS.get_datetime_from_unix_time(OS.get_unix_time_from_datetime(parse_date(iso_date)))
+
 
 static func iso_from_date_dict(date: Dictionary) -> String:
 	return (

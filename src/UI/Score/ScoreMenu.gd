@@ -1,23 +1,23 @@
 extends Panel
 
-onready var scoreService := ScoreService.new()
+export var score_line_scene: PackedScene
+
+onready var score_service := ScoreService.new()
 onready var ndListVBoxContainer := $ScrollContainer/ListVBoxContainer
 onready var ndCloseButton := $CloseButton
 onready var ndLoadingTextureRect := $LoadingTextureRect
 
-export var score_line_scene: PackedScene
-
 
 func _ready():
-	add_child(scoreService)
-	var error := scoreService.connect("get_request_completed", self, "_on_get_request_completed")
+	add_child(score_service)
+	var error := score_service.connect("get_request_completed", self, "_on_get_request_completed")
 	if error != OK:
 		push_error("An error occurred at event connect.")
 
 
 func refresh_list():
 	set_loading(true)
-	scoreService.get_scores()
+	score_service.get_scores()
 
 
 func set_loading(loading := true):

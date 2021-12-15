@@ -1,11 +1,11 @@
 extends Node
 
-const laguages := [
+const LANGUAGES := [
 	{code = "pt_BR", name = "Português (Brasil)"},
 	{code = "en_US", name = "English (United States)"}
 ]
 
-const conf_file := "user://conf.json"
+const CONF_FILE := "user://conf.json"
 
 var joystick_sensitivity := 60.0
 var dynamic_background_enabled := false
@@ -33,9 +33,9 @@ func _ready():
 
 
 func select_language(index: int):
-	if laguages.size() > index:
+	if LANGUAGES.size() > index:
 		selected_laguage = index
-		TranslationServer.set_locale(laguages[index]["code"])
+		TranslationServer.set_locale(LANGUAGES[index]["code"])
 
 
 func set_fullscreen(enabled: bool):
@@ -45,7 +45,7 @@ func set_fullscreen(enabled: bool):
 
 func save():
 	var save_game := File.new()
-	var error := save_game.open(conf_file, File.WRITE)
+	var error := save_game.open(CONF_FILE, File.WRITE)
 	if error != OK:
 		push_error("An error occurred on save file.")
 		return
@@ -67,9 +67,9 @@ func save():
 
 func load_config():
 	var save_game := File.new()
-	if not save_game.file_exists(conf_file):
+	if not save_game.file_exists(CONF_FILE):
 		return
-	var error := save_game.open(conf_file, File.READ)
+	var error := save_game.open(CONF_FILE, File.READ)
 	if error != OK:
 		push_error("An error occurred on load file.")
 		return

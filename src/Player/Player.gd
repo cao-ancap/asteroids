@@ -18,14 +18,14 @@ var start_pos := Vector2.ZERO
 var reset := false
 var processing := false
 
+var immune := false
+
 onready var ndHitSound := $HitSound
 onready var ndExplosion := $Explosion
 onready var ndParticles2DR := $Particles2DR
 onready var ndParticles2DL := $Particles2DL
 onready var ndCollisionPolygon2D := $CollisionPolygon2D
 onready var ndSprite := $Sprite
-
-var immune := false
 
 
 func _ready():

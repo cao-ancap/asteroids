@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/load0.png-97408ef39648df75bc1c4ef6a93c4673.stex"
+path="res://.import/focus_stick.svg-58563b192e69ad123b3be5c78c5fe436.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/load/load0.png"
-dest_files=[ "res://.import/load0.png-97408ef39648df75bc1c4ef6a93c4673.stex" ]
+source_file="res://Assets/Images/Stick/focus_stick.svg"
+dest_files=[ "res://.import/focus_stick.svg-58563b192e69ad123b3be5c78c5fe436.stex" ]
 
 [params]
 

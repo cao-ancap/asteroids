@@ -1,15 +1,15 @@
-extends HBoxContainer
 class_name ScoreLine
-
-onready var ndClassificationLabel := $ClassificationLabel
-onready var ndPlayerNameLabel := $PlayerNameLabel
-onready var ndScoreLabel := $ScoreLabel
-onready var ndDateLabel := $DateLabel
+extends HBoxContainer
 
 export var _classification := 0
 export var _player_name := ""
 export var _score := 0
 export var _date := ""
+
+onready var ndClassificationLabel := $ClassificationLabel
+onready var ndPlayerNameLabel := $PlayerNameLabel
+onready var ndScoreLabel := $ScoreLabel
+onready var ndDateLabel := $DateLabel
 
 
 func _ready():

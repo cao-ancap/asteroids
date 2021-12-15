@@ -2,19 +2,19 @@ extends Panel
 
 signal score_registered
 
-onready var scoreService := ScoreService.new()
+var _score: GameStatus
+
+onready var score_service := ScoreService.new()
 onready var ndSendButton := $SendButton
 onready var ndCloseButton := $CloseButton
 onready var ndLoadingTextureRect := $LoadingTextureRect
 onready var ndPlayerNameLineEdit := $PlayerNameLineEdit
 onready var ndErrorAcceptDialog := $ErrorAcceptDialog
 
-var _score: GameStatus
-
 
 func _ready():
-	add_child(scoreService)
-	var error := scoreService.connect("post_request_completed", self, "_on_post_request_completed")
+	add_child(score_service)
+	var error := score_service.connect("post_request_completed", self, "_on_post_request_completed")
 	if error != OK:
 		push_error("An error occurred at event connect.")
 
@@ -51,4 +51,4 @@ func _on_SendButton_pressed():
 	_score.set_player_name(ndPlayerNameLineEdit.text)
 	Config.player_name = ndPlayerNameLineEdit.text
 	Config.save()
-	scoreService.send_score(_score.get_status())
+	score_service.send_score(_score.get_status())

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stick.svg-356296608267d6df14852fdb2e82dd8c.stex"
+path="res://.import/load3.png-668b1d9c79e37c5056491fd165e4c3cf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Images/stick.svg"
-dest_files=[ "res://.import/stick.svg-356296608267d6df14852fdb2e82dd8c.stex" ]
+source_file="res://Assets/Images/Load/load3.png"
+dest_files=[ "res://.import/load3.png-668b1d9c79e37c5056491fd165e4c3cf.stex" ]
 
 [params]
 
@@ -28,6 +28,7 @@ process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
+process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=true

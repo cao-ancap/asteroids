@@ -1,6 +1,6 @@
 extends Node
 
-export (Array, PackedScene) var asteroid_scenes := []
+export(Array, PackedScene) var asteroid_scenes := []
 export var world_speed := -50.0
 
 var status := GameStatus.new()
@@ -32,7 +32,7 @@ func _ready():
 
 
 func _on_Menu_game_started():
-	ndScoreTimer.wait_time = 1.0 / Config.difficulty
+	ndScoreTimer.wait_time = 1.0 / (Config.difficulty + 1)
 	get_tree().call_group("asteroids", "queue_free")
 	status.start_game()
 	ndPlayer.world_speed = world_speed

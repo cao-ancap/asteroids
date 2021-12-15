@@ -2,20 +2,20 @@ extends TouchScreenButton
 
 # Based on: Gonkee's joystick script for Godot 3 - full tutorial https://youtu.be/uGyEP2LUFPg
 
-const radius := Vector2(32, 32)
-const boundary := 48.0
-const return_accel := 20.0
+const RADIUS := Vector2(32, 32)
+const BOUNDARY := 48.0
+const RETURN_ACCEL := 20.0
 
 var ongoing_drag := -1
 
 
 func _process(delta: float):
 	if ongoing_drag == -1:
-		position += (-radius - position) * return_accel * delta
+		position += (-RADIUS - position) * RETURN_ACCEL * delta
 
 
 func get_button_pos() -> Vector2:
-	return position + radius
+	return position + RADIUS
 
 
 func _input(event: InputEvent):
@@ -31,11 +31,11 @@ func _input(event: InputEvent):
 			event_dist_from_centre <= shape.radius * global_scale.x
 			or event.get_index() == ongoing_drag
 		):
-			set_global_position(event.position - radius * global_scale)
+			set_global_position(event.position - RADIUS * global_scale)
 
 			var button_pos := get_button_pos()
-			if button_pos.length() > boundary:
-				set_position(button_pos.normalized() * boundary - radius)
+			if button_pos.length() > BOUNDARY:
+				set_position(button_pos.normalized() * BOUNDARY - RADIUS)
 
 			ongoing_drag = event.get_index()
 

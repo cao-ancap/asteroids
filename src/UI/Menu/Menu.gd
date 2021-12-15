@@ -14,7 +14,7 @@ onready var ndExitButton := $ExitButton
 
 
 func _ready():
-	ndVersionLabel.text = "v" + Utils.version
+	ndVersionLabel.text = "v" + Utils.VERSION
 	ndStartButton.grab_focus()
 	show_exit_button()
 

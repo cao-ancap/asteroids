@@ -28,7 +28,7 @@ func _ready():
 	ndEffectVolumeSlider.value = Config.effect_volume
 	ndBackgroundButton.pressed = Config.dynamic_background_enabled
 	ndFullscreenButton.pressed = Config.fullscreen
-	for laguage in Config.laguages:
+	for laguage in Config.LANGUAGES:
 		ndLanguageButton.add_item(laguage["name"])
 
 	ndLanguageButton.selected = Config.selected_laguage

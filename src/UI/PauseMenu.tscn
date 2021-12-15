@@ -27,6 +27,7 @@ margin_left = 16.0
 margin_top = 16.0
 margin_right = 240.0
 margin_bottom = 57.0
+shortcut_in_tooltip = false
 shortcut = SubResource( 3 )
 text = "Resume"
 __meta__ = {

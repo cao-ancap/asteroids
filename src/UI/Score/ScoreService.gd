@@ -1,12 +1,14 @@
-extends Node
 class_name ScoreService
+extends Node
 
 signal get_request_completed(result, response_code, headers, body)
 signal post_request_completed(result, response_code, headers, body)
 
-const server := "https://asteroid-score.caiocampos.repl.co/score"
-const connect_error := "An error occurred at event connect."
-const http_error := "An error occurred in the HTTP request."
+const SERVER := "https://asteroid-score.caiocampos.repl.co/score"
+const CONNECT_ERROR := "An error occurred at event connect."
+const HTTP_ERROR := "An error occurred in the HTTP request."
+
+const COEFFICIENT := 1000000
 
 
 func create_signed_dict(dict: Dictionary) -> Dictionary:
@@ -23,22 +25,19 @@ func salt_hash(dict: Dictionary) -> String:
 	return JSON.print(o).sha256_text()
 
 
-const coefficient := 1000000
-
-
 func calc_salt(n: float) -> String:
-	var x := int(sin(n) * coefficient)
+	var x := int(sin(n) * COEFFICIENT)
 	var ac := acos(n) if n > -1 and n < 1 else acos(1 / n)
-	var aci := int(ac * coefficient)
+	var aci := int(ac * COEFFICIENT)
 	return str(x + aci)
 
 
 func send_score(data_to_send: Dictionary):
-	make_post_request(server, create_signed_dict(data_to_send))
+	make_post_request(SERVER, create_signed_dict(data_to_send))
 
 
 func get_scores():
-	make_get_request(server)
+	make_get_request(SERVER)
 
 
 func make_post_request(url: String, data_to_send: Dictionary, use_ssl := true):
@@ -48,10 +47,10 @@ func make_post_request(url: String, data_to_send: Dictionary, use_ssl := true):
 	add_child(http_request)
 	var error := http_request.connect("request_completed", self, "_on_post_request_completed")
 	if error != OK:
-		push_error(connect_error)
+		push_error(CONNECT_ERROR)
 	error = http_request.request(url, headers, use_ssl, HTTPClient.METHOD_POST, request_data)
 	if error != OK:
-		push_error(http_error)
+		push_error(HTTP_ERROR)
 
 
 func _on_post_request_completed(result, response_code, headers, body):
@@ -63,10 +62,10 @@ func make_get_request(url: String):
 	add_child(http_request)
 	var error := http_request.connect("request_completed", self, "_on_get_request_completed")
 	if error != OK:
-		push_error(connect_error)
+		push_error(CONNECT_ERROR)
 	error = http_request.request(url)
 	if error != OK:
-		push_error(http_error)
+		push_error(HTTP_ERROR)
 
 
 func _on_get_request_completed(result, response_code, headers, body):

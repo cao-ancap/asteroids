@@ -52,7 +52,7 @@ _global_script_class_icons={
 
 config/name="Asteroids"
 run/main_scene="res://src/Game.tscn"
-config/icon="res://Assets/Images/Ships/ship.png"
+config/icon="res://Assets/Images/Ships/ship off.png"
 
 [autoload]
 

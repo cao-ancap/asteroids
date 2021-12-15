@@ -1,35 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/UI/Score/ScoreLine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/UI/Score/ScoreMenu.gd" type="Script" id=2]
 [ext_resource path="res://src/UI/Score/ScoreTableTheme.tres" type="Theme" id=3]
-[ext_resource path="res://Assets/Images/load/load5.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Images/load/load0.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Images/load/load4.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Images/load/load6.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Images/load/load7.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Images/load/load1.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Images/load/load3.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Images/load/load2.png" type="Texture" id=11]
-
-[sub_resource type="AnimatedTexture" id=1]
-frames = 8
-fps = 24.0
-frame_0/texture = ExtResource( 5 )
-frame_1/texture = ExtResource( 9 )
-frame_1/delay_sec = 0.0
-frame_2/texture = ExtResource( 11 )
-frame_2/delay_sec = 0.0
-frame_3/texture = ExtResource( 10 )
-frame_3/delay_sec = 0.0
-frame_4/texture = ExtResource( 6 )
-frame_4/delay_sec = 0.0
-frame_5/texture = ExtResource( 4 )
-frame_5/delay_sec = 0.0
-frame_6/texture = ExtResource( 7 )
-frame_6/delay_sec = 0.0
-frame_7/texture = ExtResource( 8 )
-frame_7/delay_sec = 0.0
+[ext_resource path="res://src/UI/LoadingTexture.tscn" type="PackedScene" id=4]
 
 [node name="ScoreMenu" type="Panel"]
 margin_left = 192.0
@@ -127,17 +101,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LoadingTextureRect" type="TextureRect" parent="."]
-visible = false
+[node name="LoadingTextureRect" parent="." instance=ExtResource( 4 )]
+visible = true
 margin_left = 16.0
-margin_top = 336.0
-margin_right = 48.0
+margin_top = 344.0
+margin_right = 40.0
 margin_bottom = 368.0
-texture = SubResource( 1 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="visibility_changed" from="." to="." method="_on_ScoreMenu_visibility_changed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_CloseButton_pressed"]
