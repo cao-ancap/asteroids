@@ -10,6 +10,8 @@ var ongoing_drag := -1
 
 
 func _process(delta: float):
+	if !visible or position.length() == (-RADIUS).length():
+		return
 	if ongoing_drag == -1:
 		position += (-RADIUS - position) * RETURN_ACCEL * delta
 
@@ -19,6 +21,8 @@ func get_button_pos() -> Vector2:
 
 
 func _input(event: InputEvent):
+	if !visible:
+		return
 	var is_touch_event := event is InputEventScreenTouch
 	var is_drag_event := event is InputEventScreenDrag
 	if not (is_touch_event or is_drag_event):

@@ -23,3 +23,5 @@ normal = ExtResource( 1 )
 pressed = ExtResource( 2 )
 shape = SubResource( 1 )
 script = ExtResource( 3 )
+
+[connection signal="visibility_changed" from="." to="." method="_on_Joystick_visibility_changed"]

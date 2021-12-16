@@ -1,6 +1,6 @@
 class_name Utils
 
-const VERSION := "0.1.34rc"
+const VERSION := "0.1.34"
 
 const RAD_000_GRAUS := deg2rad(0)
 const RAD_045_GRAUS := deg2rad(45)

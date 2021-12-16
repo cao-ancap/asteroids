@@ -7,7 +7,7 @@ signal immune_enabled
 export var max_speed := 450.0
 export var world_speed := 0.0
 
-var joystick: Node2D
+var joystick: Joystick
 
 var hp: int
 
@@ -46,27 +46,13 @@ func force_reset():
 
 
 func set_power(power: float):
-	if power < 0.0:
-		ndParticles2DR.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -2.0
-		)
-		ndParticles2DL.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -2.0
-		)
-	elif power > 0.0:
-		ndParticles2DR.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -16.0
-		)
-		ndParticles2DL.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -16.0
-		)
-	else:
-		ndParticles2DR.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -10.0
-		)
-		ndParticles2DL.process_material.set_param(
-			ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, -10.0
-		)
+	var fire_power := -2.0 - 6.0 * (power + 1.0)
+	ndParticles2DR.process_material.set_param(
+		ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, fire_power
+	)
+	ndParticles2DL.process_material.set_param(
+		ParticlesMaterial.PARAM_INITIAL_LINEAR_VELOCITY, fire_power
+	)
 
 
 func _process(delta: float):
@@ -86,17 +72,13 @@ func _process(delta: float):
 	elif position.y >= screen_size.y - 32:
 		speed.y = -3 * max_speed_delta
 
-	var direction := Vector2.ZERO
-	if Config.has_joystick and joystick:
-		direction = joystick.get_direction()
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-	if Input.is_action_pressed("move_down"):
-		direction.y += 1
-	if Input.is_action_pressed("move_up"):
-		direction.y -= 1
+	var direction := joystick.get_direction() if Config.has_joystick and joystick else Vector2.ZERO
+
+	if direction == Vector2.ZERO:
+		direction = Vector2(
+			Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
+			Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+		)
 
 	if direction.length() > 0:
 		direction = direction.normalized()
