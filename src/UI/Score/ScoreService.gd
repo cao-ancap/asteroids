@@ -4,7 +4,7 @@ extends Node
 signal get_request_completed(result, response_code, headers, body)
 signal post_request_completed(result, response_code, headers, body)
 
-const SERVER := "https://asteroid-score.onrender.com/score"
+const SERVER := "https://modular-server.onrender.com/score"
 const CONNECT_ERROR := "An error occurred at event connect."
 const HTTP_ERROR := "An error occurred in the HTTP request."
 
